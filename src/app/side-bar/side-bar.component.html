@@ -1,0 +1,230 @@
+<!-- <div id="wrapper" *ngIf="this.mainService.isSideBarHidden" class="d-md-block"> -->
+<div id="sidebar-wrapper" class="">
+  <!-- Sidebar -->
+  <ul
+    class="navbar-nav sidebar sidebar-dark accordion"
+    [ngClass]="{ toggled: this.mainService.isSideBarToggled }"
+    style="
+      height: 20em;
+      background-color: #00635b;
+      overflow: scroll;
+      overflow-x: hidden;
+    "
+    id="accordionSidebar"
+  >
+    <!-- Sidebar - Brand -->
+    <a
+      class="sidebar-brand d-flex align-items-center justify-content-center row"
+      routerLink="/user/home"
+      [replaceUrl]="true"
+      routerLinkActive="active"
+      (click)="onUserHomeNavigation()"
+    >
+      <div class="sidebar-brand-icon col">
+        <img
+          src="../assets/logo_white.svg"
+          alt=""
+          style="min-width: 36px; min-height: 36px"
+        />
+      </div>
+      <div
+        *ngIf="!this.mainService.isSideBarToggled"
+        class="sidebar-brand-text col"
+        style="text-align: left"
+      >
+        Surway
+      </div>
+    </a>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0" />
+
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item active">
+      <a
+        class="nav-link"
+        routerLink="/user/surveys"
+        routerLinkActive="active"
+        (click)="onUserSurveysNavigation()"
+      >
+        <!-- <fa-icon [icon]="faTachometerAlt" class="fas fa-fw mr-3"></fa-icon> -->
+        <i
+          class="mdi mdi-clipboard-edit-outline"
+          style="font-size: 22px; margin-right: 10px"
+        ></i>
+        <span style="font-size: 18px" *ngIf="!this.mainService.isSideBarToggled"
+          >Surveys</span
+        ></a
+      >
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider" />
+
+    <!-- Heading -->
+    <div class="sidebar-heading">Creator</div>
+
+    <!-- Nav Item - Dashboard button -->
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        routerLink="/user/dashboard"
+        routerLinkActive="active"
+        (click)="onUserDashboardNavigation()"
+      >
+        <!-- <fa-icon [icon]="faCog" class="fa fa-fw mr-2"></fa-icon> -->
+        <i
+          class="mdi mdi-firebase"
+          style="font-size: 22px; margin-right: 10px"
+        ></i>
+        <span style="font-size: 16px" *ngIf="!this.mainService.isSideBarToggled"
+          >Dashboard</span
+        >
+      </a>
+    </li>
+
+    <!-- Nav Item - My Surveys button -->
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        routerLink="/user/my-surveys"
+        routerLinkActive="active"
+        (click)="onUserMySurveysNavigation()"
+      >
+        <i
+          class="mdi mdi-flask"
+          style="font-size: 22px; margin-right: 10px"
+        ></i>
+        <span style="font-size: 16px" *ngIf="!this.mainService.isSideBarToggled"
+          >My Surveys</span
+        >
+      </a>
+    </li>
+
+    <!-- Nav Item - Groups button -->
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        routerLink="/user/groups"
+        routerLinkActive="active"
+        (click)="onUserGroupNavigation()"
+      >
+        <i
+          class="mdi mdi-chemical-weapon"
+          style="font-size: 22px; margin-right: 10px"
+        ></i>
+        <span
+          style="font-size: 16px"
+          *ngIf="!this.mainService.isSideBarToggled"
+        >
+          Groups</span
+        >
+      </a>
+    </li>
+
+    <!-- Nav Item - Templates button -->
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        routerLink="/user/templates"
+        routerLinkActive="active"
+        (click)="onUserTemplateNavigation()"
+      >
+        <i
+          class="mdi mdi-chart-box-plus-outline"
+          style="font-size: 22px; margin-right: 10px"
+        ></i>
+        <span
+          style="font-size: 16px"
+          *ngIf="!this.mainService.isSideBarToggled"
+        >
+          Templates</span
+        >
+      </a>
+    </li>
+
+    <!-- Nav Item - TimeLine button -->
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        routerLink="/user/timeline"
+        routerLinkActive="active"
+        (click)="onUserTimelineNavigation()"
+      >
+        <i
+          class="mdi mdi-timeline-check"
+          style="font-size: 22px; margin-right: 10px"
+        ></i>
+        <span
+          style="font-size: 16px"
+          *ngIf="!this.mainService.isSideBarToggled"
+        >
+          Timeline</span
+        >
+      </a>
+    </li>
+
+    <!-- Nav Item - Statistics button -->
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        routerLink="/user/statistics"
+        routerLinkActive="active"
+        (click)="onUserStatisticsNavigation()"
+      >
+        <i
+          class="mdi mdi-chart-arc"
+          style="font-size: 22px; margin-right: 10px"
+        ></i>
+        <span
+          style="font-size: 16px"
+          *ngIf="!this.mainService.isSideBarToggled"
+        >
+          Statistics</span
+        >
+      </a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block" />
+
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+      <!-- <button class="rounded-circle border-0" id="sidebarToggle">
+        <span></span>
+      </button> -->
+      <button
+        class="rounded-circle border-0"
+        id="sidebarToggle"
+        (click)="this.mainService.toggleSideBar()"
+      >
+        <i
+          class="mdi mdi-chevron-left"
+          *ngIf="!this.mainService.isSideBarToggled"
+          style="font-size: 22px; margin-right: 10px"
+        ></i>
+        <i
+          class="mdi mdi-chevron-right"
+          *ngIf="this.mainService.isSideBarToggled"
+          style="font-size: 22px; margin-right: 10px"
+        ></i>
+      </button>
+    </div>
+
+    <!-- Sidebar Message -->
+    <div class="sidebar-card d-none d-lg-flex">
+      <i class="mdi mdi-bitcoin material-icon"></i>
+      <p class="text-center mb-2" *ngIf="!this.mainService.isSideBarToggled">
+        Through <strong>HU Coins</strong>, you can unlock premium features,
+        components, and more!
+      </p>
+      <a
+        class="btn btn-sm"
+        style="background-color: #c7781c; color: white"
+        (click)="onSubscribe()"
+        >Buy HU Coins!</a
+      >
+    </div>
+  </ul>
+  <!-- End of Sidebar -->
+</div>

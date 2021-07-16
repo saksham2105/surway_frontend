@@ -1,0 +1,228 @@
+<div class="accordion" id="userHome">
+  <!-- Assigned Surveys Component -->
+  <div class="accordion-item shadow">
+    <h2 class="accordion-header" id="assigned-survey">
+      <button
+        class="accordion-button"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#content-assigned-survey"
+        aria-expanded="true"
+        aria-controls="content-assigned-survey"
+      >
+        {{ btnAssignedSurveyName }}
+      </button>
+    </h2>
+    <!-- Loading Spinner -->
+    <div class="loading_spinner" *ngIf="isAssignedSurveyLoading">
+      <app-loading-spinner></app-loading-spinner>
+      <p>Loading.....</p>
+    </div>
+
+    <div
+      id="content-assigned-survey"
+      class="accordion-collapse collapse show"
+      aria-labelledby="assigned-survey"
+      *ngIf="!isAssignedSurveyLoading"
+    >
+      <div class="accordion-body">
+        <div class="content" *ngIf="assignedSurveyList.length > 0; else empty1">
+          <div class="container-fluid">
+            <div class="row card-row">
+              <div
+                class="col-md-4 col-sm-6 col-lg-3 col-xs-12"
+                *ngFor="let item of assignedSurveyList; let i = index"
+                (click)="appearSurvey(item)"
+              >
+                <div
+                  class="tab-content card-info shadow-lg p-3 mb-5 bg-white"
+                  style="max-width: 320px"
+                >
+                  <div class="row card-info-row">
+                    <!-- Card Content-->
+                    <div class="card col-xs-12" style="border: none">
+                      <img
+                        class="category-image"
+                        style="border-radius: 4px"
+                        src="{{ item.surveyImage }}"
+                      />
+                    </div>
+
+                    <div
+                      class="row assigned-survey-footer col-xs-12"
+                      style="font-size: 14px"
+                    >
+                      <p style="margin-top: 4px">
+                        Title :
+                        <strong
+                          ><span class="main-content">
+                            {{ item.surveyName }}
+                          </span>
+                        </strong>
+                      </p>
+                      <p style="margin-top: -10px">
+                        Category:
+                        <strong>
+                          <span class="main-content">{{
+                            item.surveyCategory
+                          }}</span>
+                        </strong>
+                      </p>
+
+                      <p style="margin-top: -10px">
+                        Created on :
+                        <strong>
+                          <span class="main-content"
+                            >{{ item.timeStamp | date: "MMMM dd, YYYY" }}
+                          </span></strong
+                        >
+                      </p>
+                      <p class="question-total">
+                        Contains Questions :
+                        <strong>
+                          {{ item.questionsCount }}
+                        </strong>
+                      </p>
+                      <hr />
+                      <p class="text-truncate">
+                        From:
+                        <strong>
+                          <span class="main-content"
+                            >{{ item.userEmail }}
+                          </span></strong
+                        >
+                      </p>
+                    </div>
+
+                    <!-- Card content ENDS-->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ng-template #empty1>
+        <div class="empty_block xs-12">
+          <img src="./../../../assets/no_assigned_survey.png" alt="no data" />
+          <h3><i>No Assigned Surveys for now</i></h3>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+  <br />
+  <br />
+
+  <!-- Public Surveys Component -->
+  <div class="accordion-item shadow">
+    <h2 class="accordion-header" id="public-survey">
+      <button
+        class="accordion-button collapsed"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#public-survey-content"
+        aria-expanded="false"
+        aria-controls="public-survey-content"
+      >
+        {{ btnPublicSurveyName }}
+      </button>
+    </h2>
+    <!-- Loading Spinner -->
+    <div class="loading_spinner" *ngIf="isAssignedSurveyLoading">
+      <app-loading-spinner></app-loading-spinner>
+      <p>Loading.....</p>
+    </div>
+    <div
+      id="public-survey-content"
+      class="accordion-collapse collapse"
+      aria-labelledby="public-survey"
+      *ngIf="!isAssignedSurveyLoading"
+    >
+      <div class="accordion-body">
+        <div class="content" *ngIf="publicSurveyList.length > 0; else empty2">
+          <div class="container-fluid">
+            <div
+              class="row card-info shadow-lg p-2 mb-3 bg-white"
+              *ngFor="let item of publicSurveyList; let i = index"
+              style="cursor: pointer"
+              (click)="appearSurvey(item)"
+            >
+              <div class="row">
+                <div class="col-md-2">
+                  <img
+                    class="category-public-image img-circle"
+                    style="border-radius: 4px"
+                    src="{{ item.surveyImage }}"
+                  />
+                </div>
+                <div class="col-md-4" style="font-size: 14px">
+                  <p style="margin-top: 8px">
+                    Title :
+                    <strong
+                      ><span class="main-content">
+                        {{ item.surveyName }}
+                      </span>
+                    </strong>
+                  </p>
+                  <p style="margin-top: -10px">
+                    Category:
+                    <strong>
+                      <span class="main-content">{{
+                        item.surveyCategory
+                      }}</span>
+                    </strong>
+                  </p>
+                </div>
+                <div class="col-md-3" style="font-size: 14px">
+                  <p style="margin-top: 8px">
+                    Created on :
+                    <strong>
+                      <span class="main-content"
+                        >{{ item.timeStamp | date: "MMMM dd, YYYY" }}
+                      </span></strong
+                    >
+                  </p>
+                  <p class="text-truncate" style="margin-top: -10px">
+                    From:
+                    <strong>
+                      <span class="main-content"
+                        >{{ item.userEmail }}
+                      </span></strong
+                    >
+                  </p>
+                </div>
+                <div class="col-md-3">
+                  <p class="question-total" style="margin-top: 4px">
+                    Questions :
+                    <strong>
+                      {{ item.questionsCount }}
+                    </strong>
+                  </p>
+                  <p class="question-total" style="margin-top: 6px">
+                    Reward :
+                    <strong> 2 💰</strong>
+                    <!-- Material Bitcoin icon
+                       <i
+                      class="mdi mdi-bitcoin"
+                      style="
+                        font-size: 20px;
+                        margin-right: 10px;
+                        margin-top: 4px ;
+                      "
+                    ></i> -->
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ng-template #empty2>
+          <div class="empty_block xs-12">
+            <img src="./../../../assets/no_public_survey.png" alt="no data" />
+            <h3><i>No Public Surveys available</i></h3>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

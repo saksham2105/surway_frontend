@@ -1,0 +1,159 @@
+<div class="wrapper container-fluid py-3">
+  <div class="header" style="margin-top: 12px">
+    <h4 class="text-muted">Share Your Survey 🔗</h4>
+    <hr style="margin-top: -3px" />
+  </div>
+  <!-- Share with people or groups section -->
+  <div class="p-2 mr-2">
+    <div class="d-flex align-items-center" (click)="toggle(1)">
+      <button
+        class="btn rounded-circle toggle-div mr-4 border-0"
+        [ngStyle]="{
+          'background-color': hideContent === 1 ? '#00635B' : 'gray'
+        }"
+      >
+        <i class="mdi mdi-account-group"></i>
+      </button>
+      <p class="h3">Share among groups</p>
+    </div>
+    <div class="group-section" *ngIf="userGroups.length > 0; else noGroups">
+      <div class="hidden-content" *ngIf="hideContent === 1">
+        <div class="row mx-2 my-2 d-flex justify-content-start">
+          <div
+            *ngFor="let assignedGroup of assignedGroups.getValue()"
+            class="group-div rounded col-md-4 col-12 my-2"
+          >
+            <p style="padding-right: 6px">{{ assignedGroup.name }}</p>
+          </div>
+        </div>
+        <!-- displays all groups of the user -->
+        <div class="my-2 d-flex justify-content-start px-2">
+          <a
+            style="font-size: 16px; background-color: #00635b; color: white"
+            class="d-sm-inline-block btn btn-sm shadow-sm d-flex"
+          >
+            <span class="mr-2">
+              <i class="mdi mdi-account-group text-white"></i>
+            </span>
+            <select
+              id="survey-stats"
+              style="background-color: #00635b; color: white; border: none"
+              (change)="onChange($event)"
+            >
+              <!-- NG FOR survey list -->
+              <option
+                class="d-block text-truncate"
+                *ngFor="let group of userGroups; let i = index"
+                [value]="i"
+              >
+                {{ group.name }}
+              </option>
+            </select>
+          </a>
+          <button
+            class="btn col-sm-1 col-2 p-0"
+            style="margin-left: 10px"
+            (click)="assignSurveyToGroup(selectedGroupId)"
+          >
+            <i class="mdi mdi-plus"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #noGroups>
+      <label
+        *ngIf="hideContent === 1"
+        style="
+          color: red;
+          margin-top: 8px;
+          margin-left: 64px;
+          margin-bottom: -10px;
+        "
+        >Create at least one Group to use this feature!</label
+      >
+    </ng-template>
+  </div>
+  <div class="p-2 mr-2">
+    <div class="d-flex align-items-center" (click)="toggle(2)">
+      <button
+        class="btn rounded-circle toggle-div mr-4 border-0"
+        [ngStyle]="{
+          'background-color': hideContent === 2 ? '#00635B' : 'gray'
+        }"
+      >
+        <i class="mdi mdi-account-multiple-plus"></i>
+      </button>
+      <p class="h3">Share with people</p>
+    </div>
+    <div class="hidden-content" *ngIf="hideContent == 2">
+      <!-- displays all assigned users -->
+      <div class="row mx-2 my-2 d-flex justify-content-start">
+        <div
+          *ngFor="let assignedEmail of assignedEmails.getValue()"
+          class="group-div rounded col-md-4 col-12 my-2"
+        >
+          <p class="text-truncate" style="padding-right: 6px">
+            {{ assignedEmail }}
+          </p>
+        </div>
+      </div>
+      <div
+        class="row my-2 d-flex justify-content-between"
+        style="text-align: center"
+      >
+        <input
+          type="text"
+          style="margin-left: 64px"
+          class="form-control col-md-8 col-8"
+          placeholder="Enter email"
+          [(ngModel)]="currentEmail"
+        />
+        <label id="errorAssignEmails" style="color: red; visibility: hidden">
+          You can only assign list of 5 emails at a time.</label
+        >
+        <button class="btn col-md-2 col-2" (click)="assignEmail()">Add</button>
+      </div>
+    </div>
+  </div>
+  <!-- Get link Section -->
+  <div class="p-2 mr-2">
+    <div class="d-flex align-items-center toggle-div" (click)="toggle(3)">
+      <button
+        class="btn rounded-circle toggle-div mr-4 border-0"
+        [ngStyle]="{
+          'background-color': hideContent === 3 ? '#00635B' : 'gray'
+        }"
+      >
+        <i class="mdi mdi-link"></i>
+      </button>
+      <p class="h3">Get link</p>
+    </div>
+    <div class="hidden-content d-flex my-3" *ngIf="hideContent == 3">
+      <label
+        style="
+          border: 1px solid #e9e9e9;
+          background-color: #e9e9e9;
+          color: #515d5f;
+          padding: 6px;
+          margin-top: 6px;
+          border-radius: 8px;
+        "
+        class="text-truncate"
+        >{{ surveyLink }}</label
+      >
+      <button
+        id="copy-link-btn"
+        class="btn rounded text-nowrap"
+        (click)="copyContent()"
+      >
+        Copy Link
+      </button>
+    </div>
+  </div>
+  <div>
+    <button class="btn rounded my-2" (click)="back()">Back</button>
+    <button class="btn rounded my-2 float-right" (click)="done()">Done</button>
+  </div>
+</div>
+<!-- <app-base-modal></app-base-modal> -->

@@ -1,0 +1,232 @@
+<div class="container-fluid">
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h3 style="color: #00635b">{{ headerMySurvey }}</h3>
+    <a
+      (click)="onCreateSurvey()"
+      routerLink="/user/templates"
+      routerLinkActive="active"
+      style="font-size: 16px; background-color: #00635b; color: white"
+      class="d-sm-inline-block btn btn-sm shadow-sm"
+    >
+      <i class="mdi mdi-file-plus" style="margin-right: 10px"></i>
+      Create Survey</a
+    >
+  </div>
+
+  <!-- Loading Spinner -->
+  <div class="loading_spinner" *ngIf="isMySurveyLoading; else mySurveyContent">
+    <app-loading-spinner></app-loading-spinner>
+    <p>Loading.....</p>
+  </div>
+  <ng-template #mySurveyContent>
+    <div
+      class="content"
+      style="margin-left: 2rem; margin-right: 2rem"
+      *ngIf="mySurveyList.length > 0; else emptyMySurveys"
+    >
+      <div
+        class="row card-info shadow p-2 mb-4 bg-white"
+        *ngFor="let item of mySurveyList; let i = index"
+      >
+        <div
+          class="accordion accordion-flush"
+          style="margin: 0; padding: 0"
+          [attr.id]="'itemDropDown' + i"
+        >
+          <div class="accordion-item">
+            <h2 class="accordion-header" [attr.id]="'item-heading' + i">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                [attr.data-bs-target]="'#item-collapse' + i"
+                aria-expanded="false"
+                [attr.aria-controls]="'item-collapse' + i"
+              >
+                {{ item.surveyName }}
+                <span
+                  style="
+                    color: #00635b;
+                    font-size: 14px;
+                    margin-left: 10%;
+                    font-weight: bold;
+                  "
+                  >{{
+                    item.surveyLastResponse === ""
+                      ? "No Last Response"
+                      : "Last Response: "
+                  }}
+                  {{
+                    item.surveyLastResponse | date: "MMMM dd, YYYY  hh:mm a"
+                  }}</span
+                >
+              </button>
+            </h2>
+            <div
+              [attr.id]="'item-collapse' + i"
+              class="accordion-collapse collapse"
+              [attr.aria-labelledby]="'item-heading' + i"
+              [attr.data-bs-parent]="'#itemDropDown' + i"
+            >
+              <div class="accordion-body">
+                <div class="row">
+                  <div class="col-12 col-xs-5 col-sm-5 col-md-5 col-lg-2">
+                    <img
+                      class="category-public-image"
+                      src="{{ item.surveyImage }}"
+                    />
+                  </div>
+                  <div
+                    class="col-12 col-xs-7 col-sm-7 col-md-7 col-lg-3"
+                    style="font-size: 16px"
+                  >
+                    <p style="margin-top: 8px">
+                      Title :
+                      <strong
+                        ><span class="main-content">
+                          {{ item.surveyName }}
+                        </span>
+                      </strong>
+                    </p>
+                    <p style="margin-top: -10px">
+                      Category:
+                      <strong>
+                        <span class="main-content">{{
+                          item.surveyCategory
+                        }}</span>
+                      </strong>
+                    </p>
+                    <p style="margin-top: -10px">
+                      Created on :
+                      <strong>
+                        <span class="main-content"
+                          >{{ item.surveyCreationDate | date: "MMMM dd, YYYY" }}
+                        </span></strong
+                      >
+                    </p>
+                  </div>
+                  <div
+                    class="col-12 col-xs-12 col-sm-12 col-md-5 col-lg-3"
+                    style="font-size: 16px"
+                  >
+                    <p style="margin-top: 8px">
+                      {{
+                        item.surveyLastResponse === ""
+                          ? "No Last Response"
+                          : "Last Response: "
+                      }}
+                      <strong>
+                        <span class="main-content" style="color: #00635b"
+                          >{{
+                            item.surveyLastResponse
+                              | date: "MMMM dd, YYYY  hh:mm a"
+                          }}
+                        </span></strong
+                      >
+                    </p>
+                    <p style="margin-top: -10px">
+                      Survey Status:
+                      <strong>
+                        <span
+                          class="main-content"
+                          id="surveyStatusText"
+                          [ngStyle]="{
+                            color: item.surveyActive ? '#008000' : '#ff0000'
+                          }"
+                          >{{ item.surveyActive ? "Active" : "Inactive" }}
+                        </span></strong
+                      >
+                    </p>
+                  </div>
+                  <div class="col-12 col-xs-12 col-sm-12 col-md-7 col-lg-4">
+                    <div class="row" style="margin-top: 8px">
+                      <div class="col">
+                        <p style="padding-right: 10px; padding-top: 2px">
+                          Delete Survey
+                        </p>
+                      </div>
+                      <div class="col">
+                        <div style="margin-top: -6px">
+                          <button
+                            (click)="onDeleteSurvey(item.surveyID)"
+                            class="btn btn-shadow colored-btn"
+                          >
+                            <i
+                              class="mdi mdi-delete"
+                              style="font-size: 18px; margin-right: 6px"
+                            >
+                            </i>
+                            Delete
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row" style="margin-top: 8px">
+                      <div class="col">
+                        <p style="padding-right: 10px; padding-top: 2px">
+                          Edit Survey
+                        </p>
+                      </div>
+                      <div class="col">
+                        <div style="margin-top: -6px">
+                          <button
+                            (click)="onEditSurvey(item)"
+                            class="btn btn-shadow colored-btn"
+                          >
+                            <i
+                              class="mdi mdi-fountain-pen-tip"
+                              style="font-size: 18px; margin-right: 6px"
+                            >
+                            </i>
+                            Edit
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col">
+                        <p style="padding-right: 10px; padding-top: 10px">
+                          Enable/Disable
+                        </p>
+                      </div>
+                      <div class="col">
+                        <div style="margin-top: -20px">
+                          <input
+                            type="checkbox"
+                            [checked]="item.surveyActive"
+                            [attr.id]="'toggle' + i"
+                            (change)="
+                              onEnableDisableSurvey(
+                                item.surveyActive,
+                                item.surveyID
+                              )
+                            "
+                          />
+                          <label [attr.for]="'toggle' + i"></label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #emptyMySurveys>
+      <div class="empty_block xs-12">
+        <img src="./../../../assets/no_my_surveys.svg" alt="no data" />
+        <h3 style="margin-top: 5px">
+          <i>Create Survey to see your survey lists</i>
+        </h3>
+      </div>
+    </ng-template>
+  </ng-template>
+</div>
+<div *ngIf="isMySurveyLaunchModal">
+  <app-alert-modal></app-alert-modal>
+</div>

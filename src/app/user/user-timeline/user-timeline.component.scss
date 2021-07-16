@@ -1,0 +1,27 @@
+.card-info {
+  border: 1px solid lightgrey;
+  border-radius: 0.6rem;
+  border-left: 4px solid #00635b;
+  cursor: pointer;
+  &-row {
+    font-size: 16px;
+  }
+}
+
+.loading_spinner {
+  height: 100%;
+  width: 100%;
+  padding-top: 20vh;
+  text-align: center;
+}
+
+.empty_block {
+  text-align: center;
+  margin-top: 2%;
+  > img {
+    background: center center fixed;
+    padding: 1%;
+    width: 280px;
+    height: 280px;
+  }
+}

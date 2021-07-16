@@ -1,0 +1,60 @@
+<form
+  [formGroup]="form"
+  class="row d-flex flex-row justify-content-between"
+  (click)="saveForm()"
+>
+  <div
+    formArrayName="options"
+    class="
+      col-md-6 col-12
+      row
+      d-flex
+      flex-row
+      align-items-center
+      justify-content-start
+      pr-3
+      mt-2
+    "
+    *ngFor="let option of options.controls; let i = index"
+  >
+    <!-- <input
+      *ngIf="question.questionCategory.categoryName === 'multiple'"
+      type="radio"
+      class="col"
+      disabled
+    />
+    <input
+      *ngIf="question.questionCategory.categoryName === 'checkbox'"
+      type="checkbox"
+      class="col"
+      disabled
+    /> -->
+    <input
+      type="text"
+      placeholder="{{ options.controls[i].value }}"
+      id="option-{{ i }}"
+      name="option-{{ i }}"
+      [formControlName]="i"
+      class="form-control col-10 p-2"
+      (change)="saveForm()"
+    />
+    <button
+      class="btn col border-0 rounded-circle m-0 p-0"
+      [disabled]="options.length == 1"
+      (click)="removeOption(i)"
+    >
+      <i class="mdi mdi-close-circle mdi-24px"></i>
+    </button>
+  </div>
+</form>
+<!-- Add button in multi choice -->
+<div class="my-3 col p-0">
+  <button
+    id="add-new-option-btn"
+    class="btn col-md-4 col-12 text-nowrap"
+    (click)="addNewOption()"
+  >
+    New Option
+    <i class="mdi mdi-plus"></i>
+  </button>
+</div>

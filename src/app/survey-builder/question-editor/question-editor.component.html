@@ -1,0 +1,201 @@
+<div class="container-fluid wrapper mt-2">
+  <div class="header" style="margin-top: 12px">
+    <h4 class="text-muted">Edit Question Info ✏️</h4>
+    <hr style="margin-top: -3px" />
+  </div>
+  <!-- Form start -->
+  <form
+    [formGroup]="questionForm"
+    (click)="saveForm()"
+    (changeForm)="saveForm()"
+  >
+    <div class="row mr-0">
+      <!--Floating Question Input wrapper -->
+      <label style="font-size: 18px; color: black">Enter question</label>
+      <div class="col-12 mb-3">
+        <input
+          type="text"
+          style="padding: 20px"
+          class="form-control"
+          id="questionInput-1"
+          formControlName="title"
+          (change)="saveForm()"
+        />
+      </div>
+    </div>
+    <div class="row pl-2">
+      <!-- Is Mandatory checkbox -->
+      <div
+        id="isMandatory-div"
+        class="col-12 col-sm-6 my-2 d-flex justify-content-start"
+      >
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="isMandatoryInput-1"
+            formControlName="isMandatory"
+          />
+          <label class="form-check-label" for="isMandatoryInput-1">
+            Mandatory?
+          </label>
+        </div>
+      </div>
+      <!-- Answer Type Selector -->
+      <div
+        id="answerType-div"
+        class="dropdown col-12 col-sm-6"
+        formGroupName="questionCategory"
+      >
+        <select
+          class="custom-select-sm form-control-lg text-truncate"
+          id="questionCategoryNameSelector"
+          formControlName="categoryName"
+          (click)="saveForm()"
+        >
+          <option value="" disabled>Choose question type</option>
+          <option selected value="multiple">Multiple Choice</option>
+          <option value="checkbox">Checkboxes</option>
+          <option value="slider">Slider</option>
+          <option value="date">DatePicker</option>
+          <option value="text">Text</option>
+        </select>
+      </div>
+      <!-- Time Limit Selector -->
+      <!-- <div class="form-floating mb-3 col">
+        <input
+          type="number"
+          class="form-control"
+          id="expectedTime"
+          formControlName="expectedTime"
+          placeholder="Set time limit"
+          (change)="saveForm()"
+        />
+        <label for="questionInput-1" class="text-nowrap ml-2 text-truncate"
+          >Set Time Limit</label
+        >
+      </div> -->
+    </div>
+    <!-- Multiple Choice Section -->
+    <div
+      class="row row-cols-1 ml-1"
+      *ngIf="
+        questionForm.get('questionCategory.categoryName').value == 'multiple'
+      "
+    >
+      <!-- options-editor start -->
+      <app-option-editor
+        [editQuestionPos]="editQuestionPos"
+        (emitEvent)="addNewOption($event)"
+      ></app-option-editor>
+    </div>
+    <!-- Checkbox Options -->
+    <div
+      class="row row-cols-1 ml-1"
+      *ngIf="
+        questionForm.get('questionCategory.categoryName').value === 'checkbox'
+      "
+    >
+      <!-- options-editor start -->
+      <app-option-editor
+        [editQuestionPos]="editQuestionPos"
+        (emitEvent)="addNewOption($event)"
+      ></app-option-editor>
+    </div>
+    <!-- Slider Options -->
+    <div
+      class="row d-flex flex-column justify-content-start col-6"
+      *ngIf="
+        questionForm.get('questionCategory.categoryName').value === 'slider'
+      "
+    >
+      <div class="col row">
+        <div class="dropdown col">
+          <label for="sliderMinValue">Min</label>
+          <input
+            type="number"
+            min="0"
+            class="form-control"
+            formControlName="sliderMinValue"
+            id="sliderMinValue"
+            required
+          />
+          <!-- <select
+            formControlName="sliderMinValue"
+            class="custom-select-sm form-control-lg"
+            id="sliderMinValue"
+          >
+            <option value="0">0</option>
+            <option selected value="1">1</option>
+          </select> -->
+        </div>
+        <div class="col"><p class="text-dark">to</p></div>
+        <div class="dropdown col">
+          <label for="sliderMaxValue">Max</label>
+          <input
+            type="number"
+            min="{{ question.sliderMinValue + 1 }}"
+            class="form-control"
+            formControlName="sliderMaxValue"
+            id="sliderMaxValue"
+            required
+          />
+          <!-- <select
+            formControlName="sliderMaxValue"
+            class="custom-select-sm form-control-lg"
+            id="sliderMaxValue"
+          >
+            <option selected value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select> -->
+        </div>
+      </div>
+      <!-- Labels for min and max slider -->
+      <!-- <div class="col">
+        <div class="my-3">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Min Label (optional)"
+          />
+        </div>
+        <div>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Max Label (optional)"
+          />
+        </div>
+      </div> -->
+    </div>
+    <!-- Date Picker -->
+    <div
+      class="row ml-3"
+      *ngIf="questionForm.get('questionCategory.categoryName').value == 'date'"
+    >
+      <app-date-question></app-date-question>
+    </div>
+    <!-- Text type question -->
+    <div
+      class="row ml-2"
+      *ngIf="questionForm.get('questionCategory.categoryName').value == 'text'"
+    >
+      <input
+        name="text-answer"
+        id="text-answer"
+        class="col-8 my-2 form-control"
+        placeholder="Enter your answer here:"
+        disabled
+      />
+    </div>
+  </form>
+
+  <div *ngIf="isFormSaved" class="footer" style="margin-bottom: 10px">
+    <hr />
+    <h5 style="color: red">Saved Automatically, Tap on Close(X)!</h5>
+  </div>
+</div>

@@ -1,0 +1,121 @@
+<!-- Loading Spinner -->
+<div class="loading_spinner" *ngIf="isLoading">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+
+<main
+  class="d-flex align-items-center min-vh-100 py-3 py-md-0"
+  class="otp"
+  [ngStyle]="{ 'background-color': colorCode }"
+  *ngIf="!isLoading"
+>
+  <div class="container">
+    <div class="card otp-card">
+      <div class="row no-gutters">
+        <!-- Left Image in OTP Card -->
+        <div class="col-md-5">
+          <img [src]="authImagePath" alt="otp" class="otp-card-img" />
+        </div>
+        <!-- OTP Form UI in OTP Card -->
+        <div class="col-md-7">
+          <div class="card-body">
+            <!-- Brand Details (Logo & Title) -->
+            <div class="brand-wrapper">
+              <img
+                id="brand_pic"
+                src="./../../assets/logo.svg"
+                alt="logo"
+                class="logo"
+              />
+              <p class="otp-card-title">Surway</p>
+            </div>
+            <p class="otp-card-description">
+              Please ensure us, you are Humaaan!😉
+            </p>
+
+            <!------- FORM BEGINS!! ------->
+            <form [formGroup]="otpForm" (ngSubmit)="onOTPVerification()">
+              <!-- Form OTP Element -->
+              <div class="form-group">
+                <label for="otp">Enter your OTP here</label>
+                <input
+                  type="number"
+                  onKeyPress="if(this.value.length==6) return false;"
+                  name="otp"
+                  id="otp"
+                  class="form-control"
+                  placeholder="⋆ ⋆ ⋆ ⋆ ⋆ ⋆"
+                  formControlName="otp"
+                  [class.is-invalid]="
+                    otpForm.get('otp').invalid && otpForm.get('otp').touched
+                  "
+                />
+                <!-- Visual Validations for email input -->
+                <div
+                  *ngIf="
+                    (otpForm.get('otp').invalid &&
+                      otpForm.get('otp').touched) ||
+                    otpForm.get('otp').dirty
+                  "
+                >
+                  <small
+                    *ngIf="otpForm.get('otp').errors?.required"
+                    class="text-danger"
+                    >OTP is required
+                  </small>
+
+                  <small
+                    *ngIf="otpForm.get('otp').errors?.pattern"
+                    class="text-danger"
+                    >Please provide a 6-digit OTP
+                  </small>
+                </div>
+              </div>
+
+              <!-- Verify OTP Button -->
+              <button
+                name="otp-verify"
+                id="otp-verify"
+                class="btn otp-btn mb-4"
+                type="submit"
+                [disabled]="!otpForm.valid"
+              >
+                Verify OTP
+              </button>
+            </form>
+            <button
+              name="otp-resend"
+              id="otp-resend"
+              class="btn otp-btn otp-btn-resend mb-4"
+              (click)="resendOTP()"
+              [disabled]="!showResendOtpButton"
+            >
+              Resend OTP
+            </button>
+
+            <!-- Timer on OTP Screen -->
+            <div class="timer-styling">
+              <div class="timer-running" *ngIf="!showResendOtpButton">
+                Time Left : <span id="minutes"> {{ timerMinLeft }} </span> Min
+                <span id="seconds"> {{ timerSecLeft }} </span> S
+              </div>
+
+              <div class="timer-stop" *ngIf="showResendOtpButton">
+                <p>Click on Resend to send you otp again.</p>
+              </div>
+            </div>
+
+            <!------- FORM ENDS!! ------->
+
+            <!-- Footer (Terms & Privacy Policy) -->
+            <nav class="otp-card-footer-nav">
+              <a href="#!">Terms of use <strong> | </strong></a>
+              <app-base-modal></app-base-modal>
+              <a href="#!"> Privacy policy</a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

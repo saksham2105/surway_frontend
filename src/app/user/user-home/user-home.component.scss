@@ -1,0 +1,80 @@
+.accordion {
+  padding: 2%;
+  border-radius: 1rem;
+}
+
+.accordion-button {
+  background-color: #e5efee;
+  font-size: 18px;
+}
+
+.empty_block {
+  text-align: center;
+  > img {
+    background: center center fixed;
+    padding: 1%;
+    width: 220px;
+    height: 200px;
+  }
+}
+
+.card-info-row {
+  padding: 0 4px;
+}
+.question-total {
+  background-color: #00635b;
+  width: auto;
+  color: white;
+  padding: 4px 8px;
+  margin: -10px 0 8px 9px;
+  border-radius: 0.5rem;
+}
+.card-info {
+  border: 1px solid lightgrey;
+  border-radius: 0.6rem;
+  &-row {
+    font-size: 16px;
+  }
+}
+
+.assigned-survey-footer {
+  > p {
+    height: auto;
+  }
+}
+.category-image {
+  height: 160px;
+}
+
+.main-content {
+  color: #383636;
+}
+
+.category-public-image {
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+}
+
+.loading_spinner {
+  height: 100%;
+  width: 100%;
+  padding-top: 10vh;
+  text-align: center;
+}
+
+//material icon styling
+.material-icon {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  font-size: 14px;
+  line-height: 1;
+}
+
+// .vertically-center {
+//   margin-top: 15%;
+//   @media (max-width: 767px) {
+//     margin-top: 0;
+//   }
+// }

@@ -1,0 +1,357 @@
+// Template colors
+$twitter-light-gray: #aab8c2;
+$twitter-light-gray-lite: #eef0f2;
+$google-blue: #4285f4;
+$google-blue-lite: #d9e6fc;
+$google-red: #db4437;
+$google-red-lite: #f7d9d7;
+$google-yellow: #f4b400;
+$google-yellow-lite: #fcf0cc;
+$google-green: #0f9d58;
+$google-green-lite: #cfebdd;
+$insta-dark-pink: #c13584;
+$insta-dark-pink-lite: #f2d6e6;
+$insta-purple: #833ab4;
+$insta-purple-lite: #e6d7f0;
+$insta-orange: #f77737;
+$insta-orange-lite: #fde3d7;
+$wp-teal-green: #128c7e;
+$wp-teal-green-lite: #cfe8e5;
+$wp-light-green: #25d366;
+$wp-light-green-lite: #d3f6e0;
+$primary-color: #00635b;
+$primary-color-lite: #ccdfde;
+
+$theme-colors2: (
+  "twitter-light-gray": $twitter-light-gray,
+  "twitter-light-gray-lite": $twitter-light-gray-lite,
+  "google-blue": $google-blue,
+  "google-blue-lite": $google-blue-lite,
+  "google-green": $google-green,
+  "google-green-lite": $google-green-lite,
+  "google-red": $google-red,
+  "google-red-lite": $google-red-lite,
+  "google-yellow": $google-yellow,
+  "google-yellow-lite": $google-yellow-lite,
+  "insta-dark-pink": $insta-dark-pink,
+  "insta-dark-pink-lite": $insta-dark-pink-lite,
+  "insta-purple": $insta-purple,
+  "insta-purple-lite": $insta-purple-lite,
+  "insta-orange": $insta-orange,
+  "insta-orange-lite": $insta-orange-lite,
+  "wp-teal-green": $wp-teal-green,
+  "wp-teal-green-lite": $wp-teal-green-lite,
+  "wp-light-green": $wp-light-green,
+  "wp-light-green-lite": $wp-light-green-lite,
+  "primary-color": $primary-color,
+  "primary-color-lite": $primary-color-lite,
+  "border-gray": #efefef,
+) !default;
+
+@each $color, $value in $theme-colors2 {
+  .bg--#{$color} {
+    background-color: #{$value};
+  }
+  .text--#{$color} {
+    color: #{$value};
+  }
+
+  .btn--#{$color} {
+    background-color: #{$value};
+    color: white;
+    text-decoration: none;
+    & > i {
+      color: white;
+    }
+    &:hover {
+      border: 1px solid #{$value};
+      color: #{$value};
+      background-color: white;
+      & > i {
+        color: #{$value};
+      }
+    }
+  }
+
+  .border--#{$color} {
+    border: 1px solid #{$value};
+    border-radius: 6px;
+  }
+  .focus-border--#{$color} {
+    box-shadow: none;
+    &:focus {
+      border: 1px solid #{$value};
+    }
+  }
+
+  .mini-icons--#{$color} {
+    background-color: #{$value};
+    color: white;
+  }
+  .text--#{$color} {
+    color: #{$value};
+  }
+  //Custom Checkbox
+  .regular-checkbox--#{$color} {
+    -webkit-appearance: none;
+    background-color: #fafafa;
+    border: 1px solid #cacece;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05),
+      inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+    padding: 9px;
+    border-radius: 3px;
+    display: inline-block;
+    position: relative;
+    margin-right: 10px;
+    margin-top: 8px;
+    &:active,
+    &:checked:active {
+      box-shadow: 0 1px 2px #e9ecee, inset 0px 1px 3px #e9ecee;
+    }
+    &:checked {
+      background-color: #e9ecee;
+      border: 1px solid #adb8c0;
+      box-shadow: 0 1px 2px #e9ecee, inset 0px -15px 10px -12px #e9ecee,
+        inset 15px 10px -12px #e9ecee;
+      color: #{$value};
+    }
+    &:checked::after {
+      content: "\2714";
+      font-size: 14px;
+      position: absolute;
+      top: 0px;
+      left: 3px;
+      color: #{$value};
+    }
+  }
+
+  //Custom Radio Button
+  .regular-radio--#{$color} {
+    -webkit-appearance: none;
+    background-color: #fafafa;
+    border: 1px solid #cacece;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05),
+      inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+    padding: 9px;
+    border-radius: 50px;
+    display: inline-block;
+    position: relative;
+    margin-right: 10px;
+    &:checked {
+      background-color: #e9ecee;
+      color: #{$value};
+      border: 1px solid #adb8c0;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05),
+        inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05),
+        inset 15px 10px -12px rgba(255, 255, 255, 0.1),
+        inset 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+    &:checked:after {
+      content: " ";
+      width: 12px;
+      height: 12px;
+      border-radius: 50px;
+      position: absolute;
+      top: 3px;
+      background: #{$value};
+      box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.3);
+      text-shadow: 0px;
+      left: 3px;
+      font-size: 32px;
+    }
+    &:active,
+    &:checked:active {
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05),
+        inset 0px 1px 3px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  //Custom Date Picker
+  .date-picker--#{$color} {
+    color: #{$value};
+  }
+}
+p {
+  color: black;
+}
+label {
+  color: black;
+}
+.card-body {
+  & > * {
+    margin: 2% 0% 2% 0%;
+  }
+}
+.input-group {
+  &:hover {
+    cursor: pointer;
+  }
+}
+.success-checkmark {
+  width: 80px;
+  height: 115px;
+  margin: 0 auto;
+
+  .check-icon {
+    width: 80px;
+    height: 80px;
+    position: relative;
+    border-radius: 50%;
+    box-sizing: content-box;
+    border: 4px solid #4caf50;
+
+    &::before {
+      top: 3px;
+      left: -2px;
+      width: 30px;
+      transform-origin: 100% 50%;
+      border-radius: 100px 0 0 100px;
+    }
+
+    &::after {
+      top: 0;
+      left: 30px;
+      width: 60px;
+      transform-origin: 0 50%;
+      border-radius: 0 100px 100px 0;
+      animation: rotate-circle 5.25s ease-in;
+    }
+
+    &::before,
+    &::after {
+      content: "";
+      height: 100px;
+      position: absolute;
+      background: #ffffff;
+      transform: rotate(-45deg);
+    }
+
+    .icon-line {
+      height: 5px;
+      background-color: #4caf50;
+      display: block;
+      border-radius: 2px;
+      position: absolute;
+      z-index: 10;
+
+      &.line-tip {
+        top: 46px;
+        left: 14px;
+        width: 25px;
+        transform: rotate(45deg);
+        animation: icon-line-tip 0.75s;
+      }
+
+      &.line-long {
+        top: 38px;
+        right: 8px;
+        width: 47px;
+        transform: rotate(-45deg);
+        animation: icon-line-long 0.75s;
+      }
+    }
+
+    .icon-circle {
+      top: -4px;
+      left: -4px;
+      z-index: 10;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      position: absolute;
+      box-sizing: content-box;
+      border: 4px solid rgba(76, 175, 80, 0.5);
+    }
+
+    .icon-fix {
+      top: 8px;
+      width: 5px;
+      left: 26px;
+      z-index: 1;
+      height: 85px;
+      position: absolute;
+      transform: rotate(-45deg);
+      background-color: #ffffff;
+    }
+  }
+}
+
+@keyframes rotate-circle {
+  0% {
+    transform: rotate(-45deg);
+  }
+  5% {
+    transform: rotate(-45deg);
+  }
+  12% {
+    transform: rotate(-405deg);
+  }
+  100% {
+    transform: rotate(-405deg);
+  }
+}
+
+@keyframes icon-line-tip {
+  0% {
+    width: 0;
+    left: 1px;
+    top: 19px;
+  }
+  54% {
+    width: 0;
+    left: 1px;
+    top: 19px;
+  }
+  70% {
+    width: 50px;
+    left: -8px;
+    top: 37px;
+  }
+  84% {
+    width: 17px;
+    left: 21px;
+    top: 48px;
+  }
+  100% {
+    width: 25px;
+    left: 14px;
+    top: 45px;
+  }
+}
+
+@keyframes icon-line-long {
+  0% {
+    width: 0;
+    right: 46px;
+    top: 54px;
+  }
+  65% {
+    width: 0;
+    right: 46px;
+    top: 54px;
+  }
+  84% {
+    width: 55px;
+    right: 0px;
+    top: 35px;
+  }
+  100% {
+    width: 47px;
+    right: 8px;
+    top: 38px;
+  }
+}
+
+//To animate the upcoming questions
+@keyframes MyAnimation {
+  0% {
+    padding-left: 100px;
+  }
+  100% {
+    padding-left: 0px;
+  }
+}
+
+.ques-animation {
+  animation: MyAnimation 1s;
+}

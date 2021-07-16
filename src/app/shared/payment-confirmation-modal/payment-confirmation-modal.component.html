@@ -1,0 +1,30 @@
+<ng-container *ngIf="display$ | async as display">
+  <section [class.open]="display === 'open'" (click)="close()">
+    <div (click)="$event.stopPropagation()" class="col-6 h-250">
+      <button class="close rounded-circle" type="button" (click)="close()">
+        <i class="mdi mdi-close text-danger"></i>
+      </button>
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" style="color: black">
+          {{ modalHeader }}
+        </h5>
+      </div>
+      <div
+        class="row justify-content-center"
+        style="padding: 1rem; text-align: center"
+      >
+        <div class="col">
+          <img [src]="imagePath" style="max-width: 300px; max-height: 300px" />
+          <p class="h3 text-muted">
+            Do you want to {{ questionString }}? It will cost you {{ cost }} HU
+            coins!
+          </p>
+        </div>
+      </div>
+      <div class="modal-footer d-flex justify-content-between">
+        <button class="btn rounded" (click)="pay()">Purchase</button>
+        <button class="btn rounded" (click)="close()">Cancel</button>
+      </div>
+    </div>
+  </section>
+</ng-container>

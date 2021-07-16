@@ -1,0 +1,43 @@
+<!-- Correct Answers for checkboxes -->
+<div [formGroup]="form" class="row row-cols-3" (change)="saveForm()">
+  <div
+    class="
+      form-floating
+      mb-3
+      col
+      d-flex
+      flex-row
+      align-items-center
+      justify-content-start
+    "
+    formArrayName="answers"
+    *ngFor="let answer of answers.controls; let i = index"
+  >
+    <input
+      type="text"
+      class="form-control col-11"
+      id="correctAnswer-{{ i }}"
+      name="correctAnswer-{{ i }}"
+      [formControlName]="i"
+      placeholder=""
+      (click)="selectContent($event)"
+    />
+    <label for="correctAnswer-{{ i }}">Correct Answer-{{ i + 1 }}</label>
+    <button
+      class="btn btn-sm btn-light col border-0 m-0 p-0"
+      [disabled]="answers.length == 1"
+      (click)="removeAnswer(i)"
+    >
+      <fa-icon
+        [icon]="faWindowClose"
+        class="fa-2x m-0 p-0"
+        style="color: red"
+      ></fa-icon>
+    </button>
+  </div>
+</div>
+<div class="row ml-1 my-3">
+  <button class="btn btn-sm btn-outline-dark col-3" (click)="addNewAnswer()">
+    Add New Answer
+  </button>
+</div>

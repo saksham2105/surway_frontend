@@ -1,0 +1,98 @@
+$twitter-light-gray: #aab8c2;
+$google-blue: #4285f4;
+$google-red: #db4437;
+$google-yellow: #f4b400;
+$google-green: #0f9d58;
+$insta-dark-pink: #c13584;
+$insta-purple: #833ab4;
+$insta-orange: #f77737;
+$wp-teal-green: #128c7e;
+$wp-light-green: #25d366;
+
+$theme-colors2: (
+  "twitter-light-gray": $twitter-light-gray,
+  "google-blue": $google-blue,
+  "google-green": $google-green,
+  "google-red": $google-red,
+  "google-yellow": $google-yellow,
+  "insta-dark-pink": $insta-dark-pink,
+  "insta-purple": $insta-purple,
+  "insta-orange": $insta-orange,
+  "wp-teal-green": $wp-teal-green,
+  "wp-light-green": $wp-light-green,
+) !default;
+
+@each $color, $value in $theme-colors2 {
+  .bg--#{$color} {
+    background-color: #{$value};
+  }
+  .border-left--#{$color} {
+    border-left: 4px solid #{$value};
+  }
+}
+
+$primary-color: #00635b;
+$secondary-color: #a9dfda;
+
+.accordion-button {
+  background-color: #e5efee;
+  font-size: 18px;
+}
+.main-content {
+  color: #383636;
+}
+.bg-google-blue {
+  background-color: $google-blue;
+}
+
+button {
+  color: $primary-color;
+  border: 1px solid $primary-color;
+  background-color: white;
+}
+
+.survey-image {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+
+strong {
+  color: black;
+}
+p {
+  margin: 0%;
+}
+
+.card {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.loading_spinner {
+  height: 100%;
+  width: 100%;
+  padding-top: 20vh;
+  text-align: center;
+}
+
+.tooltip-wrap {
+  position: relative;
+}
+.tooltip-wrap .tooltip-content {
+  display: none;
+  position: absolute;
+  width: 120px;
+
+  padding: 5px 0;
+  text-align: center;
+  border-radius: 6px;
+  background-color: #00635b;
+  color: white;
+  padding: 0.5em;
+  z-index: 999;
+}
+.tooltip-wrap:hover .tooltip-content {
+  display: block;
+}

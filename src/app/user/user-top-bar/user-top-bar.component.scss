@@ -1,0 +1,11 @@
+$primary-color: #00635b;
+$secondary-color: #a9dfda;
+.loading_spinner {
+  height: 100%;
+  width: 100%;
+  padding-top: 50vh;
+  text-align: center;
+}
+i {
+  color: $primary-color;
+}

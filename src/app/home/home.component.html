@@ -1,0 +1,875 @@
+<div class="main" id="body">
+  <header id="banner">
+    <nav class="navbar navbar-expand pl-3 pl-sm-0" id="navbar">
+      <div class="container">
+        <div class="navbar-brand-wrapper d-flex w-100">
+          <a
+            class="d-flex w-100"
+            href="home#banner"
+            style="text-decoration: none"
+          >
+            <img
+              src="./../../assets/logo.svg"
+              style="min-height: 48px; min-width: 48px"
+              alt=""
+            />
+            <p
+              style="
+                color: #00635b;
+                margin-top: 10px;
+                font-size: 24px;
+                font-weight: bold;
+              "
+            >
+              SurWay
+            </p>
+          </a>
+          <button
+            class="navbar-toggler ml-auto"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="mdi mdi-menu navbar-toggler-icon"></span>
+          </button>
+        </div>
+
+        <div
+          class="collapse navbar-collapse navbar-menu-wrapper"
+          id="navbarSupportedContent"
+        >
+          <ul
+            class="navbar-nav align-items-lg-center align-items-start ml-auto"
+          >
+            <li
+              class="
+                d-flex
+                align-items-center
+                justify-content-between
+                pl-4 pl-lg-0
+              "
+            >
+              <div class="navbar-collapse-logo">
+                <img
+                  src="./../../assets/logo.svg"
+                  style="min-height: 48px; min-width: 48px"
+                  alt=""
+                />
+              </div>
+              <button
+                class="navbar-toggler close-button"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <span class="mdi mdi-close navbar-toggler-icon pl-5"></span>
+              </button>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="home#banner" style="font-size: 18px"
+                >Home <span class="sr-only">(current)</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="home#features" style="font-size: 18px"
+                >Features</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="home#team" style="font-size: 18px"
+                >Team</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="home#faqs" style="font-size: 18px"
+                >FAQs</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="home#about" style="font-size: 18px"
+                >About</a
+              >
+            </li>
+
+            <li class="nav-item btn-contact-us pl-4 pl-lg-0">
+              <a
+                class="btn contact-btn"
+                style="text-decoration: none"
+                target="_blank"
+                href="https://shivamdwivediwork.try.clickhelp.co/articles/#!surway-tool-publication/~getting-started"
+                >Documentation</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HOME Banner -->
+  <div class="banner" style="background-color: #eff5f4">
+    <div data-aos="fade-left" class="container">
+      <p class="font-weight-semibold" style="color: #00635b; font-size: 36px">
+        Level up the experience of <br />
+        <span style="font-size: 44px; font-weight: bolder"
+          >Survey Creation</span
+        >
+      </p>
+      <p
+        class="font-weight-normal pb-3"
+        style="color: #19726b; font-size: 18px"
+      >
+        Create your <strong>Surveys</strong> within minutes. Reach your audience
+        world-wide. View results graphically and in real-time.
+      </p>
+      <p class="font-weight-normal" style="color: #00635b; font-size: 24px">
+        Go beyond collecting feedback! Aren't you just a little bit curious?
+      </p>
+      <button class="btn btn-get-started mr-1" (click)="homeToLogin()">
+        Get started
+      </button>
+      <a
+        href="https://shivamdwivediwork.try.clickhelp.co/articles/#!surway-tool-publication/~getting-started"
+        class="btn hover-underline-label ml-1"
+        >Learn more</a
+      >
+      <div style="text-align: center">
+        <!-- Animation Create link (https://storyset.com/illustration/startup-life/cuate/animate)-->
+        <img
+          src="./../../assets/home-banner.gif"
+          style="max-width: 360px; max-height: 360px"
+          alt=""
+          class="img-fluid"
+        />
+      </div>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="content-wrapper" style="text-align: center">
+    <div class="container">
+      <!-- What we offers Most Special Features-->
+      <section class="features-overview" id="features" style="margin-top: 3rem">
+        <div data-aos="slide-up" class="content-header" style="color: black">
+          <h2 style="font-size: 36px">How does it works</h2>
+          <h6 class="section-subtitle" style="color: #00635b; font-size: 24px">
+            One portal that serves as an easy-to-use Survey Toolkit<br />that
+            meets Creator's needs.
+          </h6>
+        </div>
+
+        <!-- Benefits -->
+        <div class="d-md-flex justify-content-between" style="margin-top: 2rem">
+          <!-- First Benefit -->
+          <div
+            data-aos="zoom-in"
+            class="grid-margin d-flex justify-content-start"
+          >
+            <div class="features-width">
+              <img
+                class="mdi img-icons"
+                src="./../../assets/template-home.svg"
+                style="height: 200px; width: 200px"
+              />
+              <h5
+                class="py-3"
+                style="color: black; font-size: 22px; margin-top: 6px"
+              >
+                Custom <br />Themes
+              </h5>
+              <p class="text-muted" style="font-size: 20px">
+                Premium users can choose between ten colorful survey themes in
+                each category.
+              </p>
+              <a href="#"><p class="hover-underline-label">Read more</p></a>
+            </div>
+          </div>
+          <!-- Second Benefit -->
+          <div
+            data-aos="zoom-in"
+            class="grid-margin d-flex justify-content-center"
+          >
+            <div class="features-width">
+              <img
+                class="mdi img-icons"
+                src="./../../assets/easy-to-use-home.svg"
+                style="height: 200px; width: 200px"
+              />
+              <h5
+                class="py-3"
+                style="color: black; font-size: 22px; margin-top: 6px"
+              >
+                Easy <br />To Use
+              </h5>
+              <p class="text-muted" style="font-size: 20px">
+                We've done our best to make the fastest and most intuitive user
+                experience on our portal.
+              </p>
+              <a href="#"><p class="hover-underline-label">Read more</p></a>
+            </div>
+          </div>
+          <!-- Third Benefit -->
+          <div
+            data-aos="zoom-in"
+            class="grid-margin d-flex justify-content-end"
+          >
+            <div class="features-width">
+              <img
+                class="mdi img-icons"
+                src="./../../assets/rewards-home.svg"
+                style="height: 200px; width: 200px"
+              />
+              <h5
+                class="py-3"
+                style="color: black; font-size: 22px; margin-top: 6px"
+              >
+                Earn <br />
+                rewards
+              </h5>
+              <p class="text-muted" style="font-size: 20px">
+                Earn Virtual Coins by filling up Public Surveys and unlock
+                premium content.
+              </p>
+              <a href="#"><p class="hover-underline-labels">Read more</p></a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- What features can be illustrated in pics -->
+      <section class="section-3" style="text-align: left; margin-top: 1.5rem">
+        <div
+          data-aos="slide-up"
+          class="content-header"
+          style="text-align: center; color: black"
+        >
+          <h2 style="font-size: 36px">What we are Proud for!</h2>
+          <h6 class="section-subtitle" style="color: #00635b; font-size: 24px">
+            Features that makes the experience of Creator's at cloud 9.
+          </h6>
+        </div>
+        <!-- Feature 1 -->
+        <div class="row">
+          <div
+            class="col-12 col-lg-7 grid-margin grid-margin-lg-0"
+            data-aos="fade-right"
+            style="margin-top: 3rem"
+          >
+            <h3
+              class="m-0"
+              style="color: black; padding-left: 3rem; padding-right: 3rem"
+            >
+              We Offer a Wide range of Survey Categories!
+            </h3>
+            <div class="m-0" style="padding-left: 5rem; padding-right: 5rem">
+              <p class="py-4 m-0 text-muted" style="font-size: 20px">
+                With over 5 categories, you can design your perfect survey at
+                any time.
+              </p>
+              <p class="font-weight-medium text-muted" style="font-size: 20px">
+                Spruce it up to suit your work and style with customizable
+                category themes.
+              </p>
+            </div>
+          </div>
+          <div
+            class="col-12 col-lg-5 p-0 grid-margin grid-margin-lg-0"
+            data-aos="fade-left"
+            style="text-align: center"
+          >
+            <img
+              src="./../../assets/category-home.gif"
+              style="max-width: 360px; max-height: 360px"
+              alt=""
+              class="img-fluid"
+            />
+          </div>
+        </div>
+        <!-- Feature 2 -->
+        <div class="row align-items-center" style="margin-top: 2rem">
+          <div
+            class="col-12 col-lg-7 text-center flex-item grid-margin"
+            data-aos="fade-right"
+          >
+            <img
+              src="./../../assets/survey-stats-home.gif"
+              style="max-width: 360px; max-height: 360px; margin-top: 0.5rem"
+              alt=""
+              class="img-fluid"
+            />
+          </div>
+          <div
+            class="col-12 col-lg-5 flex-item grid-margin"
+            data-aos="fade-left"
+          >
+            <h3 class="m-0" style="color: black">
+              Creator compatibility with Responses, Reports and Statistics
+            </h3>
+            <div class="m-0" style="padding-left: 1rem; padding-right: 1rem">
+              <p class="py-4 m-0 text-muted" style="font-size: 20px">
+                You can see Survey Wise Statistics based on day, weekly, monthly
+                and yearly basis.
+              </p>
+              <p
+                class="pb-2 font-weight-medium text-muted"
+                style="font-size: 20px"
+              >
+                You can generate the reports of survey wise Statistics in PDF
+                and CSV Format.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Team Seciton -->
+      <section class="section-team" id="team" style="margin-top: 1.5rem">
+        <div class="row grid-margin">
+          <div data-aos="slide-up" class="col-12 text-center pb-5">
+            <h2 style="font-size: 36px; color: black">About Team</h2>
+            <h6
+              class="section-subtitle"
+              style="color: #00635b; font-size: 24px; line-height: 40px"
+            >
+              Developers who build this with ❤️ <br />
+              No matter Day☀️ or Night🌙
+            </h6>
+          </div>
+          <div
+            class="col-12 col-md-6 col-lg-3 sretch-card mb-3 mb-lg-0"
+            data-aos="zoom-in"
+          >
+            <div class="card color-cards">
+              <div class="card-body p-0">
+                <div
+                  class="text-center card-contents"
+                  style="background-color: #baa6de"
+                >
+                  <div class="card-image">
+                    <img
+                      src="./../../assets/profile-pic-saksham.png"
+                      style="border-radius: 50%; height: 180px"
+                      alt=""
+                    />
+                  </div>
+                  <div
+                    class="
+                      card-desc-box
+                      d-flex
+                      align-items-center
+                      justify-content-around
+                    "
+                  >
+                    <div>
+                      <h6 class="text-white pb-2 px-3">
+                        Want to know more about me
+                      </h6>
+                      <a
+                        href="https://saksham2105.github.io/portfolio/"
+                        target="_blank"
+                        class="btn btn-white"
+                        style="background-color: white; font-weight: bold"
+                      >
+                        Connect me
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-details text-center pt-4">
+                  <h6 class="m-0 pb-1" style="color: black">Saksham Solanki</h6>
+                  <p>Product Captain, Backend Lead</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="col-12 col-md-6 col-lg-3 sretch-card mb-3 mb-lg-0"
+            data-aos="zoom-in"
+          >
+            <div class="card color-cards">
+              <div class="card-body p-0">
+                <div
+                  class="text-center card-contents"
+                  style="background-color: #ffd08c"
+                >
+                  <div class="card-image">
+                    <img
+                      src="./../../assets/profile-pic-anshul.png"
+                      style="border-radius: 50%; height: 180px"
+                      alt=""
+                    />
+                  </div>
+                  <div
+                    class="
+                      card-desc-box
+                      d-flex
+                      align-items-center
+                      justify-content-around
+                    "
+                  >
+                    <div>
+                      <h6 class="text-white pb-2 px-3">
+                        Want to know more about me
+                      </h6>
+                      <a
+                        href="http://anshul1507.tech"
+                        target="_blank"
+                        class="btn btn-white"
+                        style="background-color: white; font-weight: bold"
+                      >
+                        Connect me
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-details text-center pt-4">
+                  <h6 class="m-0 pb-1" style="color: black">Anshul Gupta</h6>
+                  <p>Product Design, Frontend Lead</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="col-12 col-md-6 col-lg-3 sretch-card mb-3 mb-lg-0"
+            data-aos="zoom-in"
+          >
+            <div class="card color-cards">
+              <div class="card-body p-0">
+                <div
+                  class="text-center card-contents"
+                  style="background-color: #9fa8da"
+                >
+                  <div class="card-image">
+                    <img
+                      src="./../../assets/profile-pic-shivam.png"
+                      style="border-radius: 50%; height: 180px"
+                      alt=""
+                    />
+                  </div>
+                  <div
+                    class="
+                      card-desc-box
+                      d-flex
+                      align-items-center
+                      justify-content-around
+                    "
+                  >
+                    <div>
+                      <h6 class="text-white pb-2 px-3">
+                        Want to know more about me
+                      </h6>
+                      <a
+                        href="https://imshivamdwivedi.github.io/"
+                        target="_blank"
+                        class="btn btn-white"
+                        style="background-color: white; font-weight: bold"
+                      >
+                        Connect me
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-details text-center pt-4">
+                  <h6 class="m-0 pb-1" style="color: black">Shivam Dwivedi</h6>
+                  <p>Product Documentation, Backend Developer</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="col-12 col-md-6 col-lg-3 sretch-card mb-3 mb-lg-0"
+            data-aos="zoom-in"
+          >
+            <div class="card color-cards">
+              <div class="card-body p-0">
+                <div
+                  class="text-center card-contents"
+                  style="background-color: #ffb39b"
+                >
+                  <div class="card-image">
+                    <img
+                      src="./../../assets/profile-pic-subham.png"
+                      style="border-radius: 50%; height: 180px"
+                      alt=""
+                    />
+                  </div>
+                  <div
+                    class="
+                      card-desc-box
+                      d-flex
+                      align-items-center
+                      justify-content-around
+                    "
+                  >
+                    <div>
+                      <h6 class="text-white pb-2 px-3">
+                        Want to know more about me
+                      </h6>
+                      <a
+                        href="http://anshul1507.tech"
+                        target="_blank"
+                        class="btn btn-white"
+                        style="background-color: white; font-weight: bold"
+                      >
+                        Connect me
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-details text-center pt-4">
+                  <h6 class="m-0 pb-1" style="color: black">Subham Khadanga</h6>
+                  <p>Frontend Developer</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Team Section ENDS-->
+
+      <!-- FAQ -->
+      <section id="faqs" class="mb-5" style="margin-top: 1.5rem">
+        <div class="container">
+          <h2 data-aos="slide-up" style="font-size: 36px; color: black">FAQ</h2>
+          <p
+            data-aos="slide-up"
+            class="section-subtitle"
+            style="color: #00635b; font-size: 24px"
+          >
+            Most Frequently Asked Questions
+          </p>
+          <div class="row accordion">
+            <div class="col-lg-6">
+              <div
+                class="accordion-item card mb-3 landing-faq-card"
+                data-aos="fade-right"
+              >
+                <h2 class="accordion-header" id="faq1">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#faq1-collapse"
+                    aria-expanded="false"
+                    aria-controls="faq1-collapse"
+                  >
+                    What are the types of Reports?
+                  </button>
+                </h2>
+                <div
+                  id="faq1-collapse"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="faq1"
+                >
+                  <div class="accordion-body">
+                    Creator can download overall reports from Dashboard which
+                    shows the stats of all his surveys in PDF Format. Also,
+                    Creator can see and download the Survey Wise statistics from
+                    Survey-Statistics Screen and participant list in PDF, CSV
+                    Format.
+                  </div>
+                </div>
+              </div>
+
+              <div
+                data-aos="fade-right"
+                class="accordion-item card mb-3 landing-faq-card"
+              >
+                <h2 class="accordion-header" id="faq2">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#faq2-collapse"
+                    aria-expanded="false"
+                    aria-controls="faq2-collapse"
+                  >
+                    What is HU Coin?
+                  </button>
+                </h2>
+                <div
+                  id="faq2-collapse"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="faq2"
+                >
+                  <div class="accordion-body">
+                    HU Coin is virtual currency in our portal to unlock the
+                    premium content ie. Templates, Survey, Statistics etc.
+                  </div>
+                </div>
+              </div>
+
+              <div
+                data-aos="fade-right"
+                class="accordion-item card mb-3 landing-faq-card"
+              >
+                <h2 class="accordion-header" id="faq3">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#faq3-collapse"
+                    aria-expanded="false"
+                    aria-controls="faq3-collapse"
+                  >
+                    How can I gain or buy HU Coins?
+                  </button>
+                </h2>
+                <div
+                  id="faq3-collapse"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="faq3"
+                >
+                  <div class="accordion-body">
+                    User can buy HU coins by making the payment or he can gain 2
+                    HU coins by filling up the Public Surveys each time.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6">
+              <div
+                data-aos="fade-left"
+                class="accordion-item card mb-3 landing-faq-card"
+              >
+                <h2 class="accordion-header" id="faq4">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#faq4-collapse"
+                    aria-expanded="false"
+                    aria-controls="faq4-collapse"
+                  >
+                    Where I can find the tutorials for all the features?
+                  </button>
+                </h2>
+                <div
+                  id="faq4-collapse"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="faq4"
+                >
+                  <div class="accordion-body">
+                    You can find all the tutorials on our
+                    <a
+                      href="https://shivamdwivediwork.try.clickhelp.co/articles/#!surway-tool-publication/~getting-started"
+                      class="hover-underline-label"
+                      >User Manual</a
+                    >.
+                  </div>
+                </div>
+              </div>
+
+              <div
+                data-aos="fade-left"
+                class="accordion-item card mb-3 landing-faq-card"
+              >
+                <h2 class="accordion-header" id="faq5">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#faq5-collapse"
+                    aria-expanded="false"
+                    aria-controls="faq5-collapse"
+                  >
+                    Where I can find the transaction history?
+                  </button>
+                </h2>
+                <div
+                  id="faq5-collapse"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="faq5"
+                >
+                  <div class="accordion-body">
+                    You can find all transaction history along with tracking
+                    Activity in TimeLine Section of Dashboard.
+                  </div>
+                </div>
+              </div>
+
+              <div
+                data-aos="fade-left"
+                class="accordion-item card mb-3 landing-faq-card"
+              >
+                <h2 class="accordion-header" id="faq6">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#faq6-collapse"
+                    aria-expanded="false"
+                    aria-controls="faq6-collapse"
+                  >
+                    What is Engagement Rate?
+                  </button>
+                </h2>
+                <div
+                  id="faq6-collapse"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="faq6"
+                >
+                  <div class="accordion-body">
+                    Enagement Rate is ratio of Number of responses VS Number of
+                    Views, you got on your survey.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div
+    id="about"
+    class="container-fluid"
+    style="background-color: #eff5f4; padding: 2rem"
+  >
+    <section class="contact-details" id="contact-details-section">
+      <div class="row text-center text-md-left">
+        <div class="col-12 col-md-6 col-lg-3 grid-margin">
+          <div class="align-items-center w-100">
+            <img
+              src="./../../assets/logo.svg"
+              style="min-height: 48px; min-width: 48px; float: left"
+              alt=""
+            />
+            <p
+              style="
+                color: #00635b;
+                margin-top: 10px;
+                font-size: 24px;
+                font-weight: bold;
+              "
+            >
+              SurWay
+            </p>
+          </div>
+          <div class="pt-2" style="margin-left: 1rem">
+            <p style="font-size: 18px; color: #19726b">surway@gmail.com</p>
+            <p style="font-size: 18px; color: #19726b">906-179-8309</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3 grid-margin">
+          <h5
+            class="pb-2"
+            style="
+              color: #00635b;
+              margin-top: 10px;
+              font-size: 24px;
+              font-weight: bold;
+            "
+          >
+            Get in Touch
+          </h5>
+          <p>Don’t miss any updates of our new templates and features!</p>
+          <form style="padding: 0.5rem">
+            <input
+              type="text"
+              class="form-control"
+              id="Email"
+              placeholder="Email id"
+            />
+          </form>
+          <div class="pt-3">
+            <button class="btn subscribe-btn">Subscribe</button>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3 grid-margin">
+          <h5
+            class="pb-2"
+            style="
+              color: #00635b;
+              margin-top: 10px;
+              font-size: 24px;
+              font-weight: bold;
+            "
+          >
+            About
+          </h5>
+          <a href="https://hashedin.com/about-us/" target="_blank"
+            ><p class="hover-underline-label">Company</p></a
+          >
+          <a
+            href="https://www2.deloitte.com/us/en/pages/technology/solutions/cloud-native-development.html"
+            target="_blank"
+            ><p class="hover-underline-label">Services</p></a
+          >
+          <a href="https://hashedin.com/news-events/" target="_blank"
+            ><p class="hover-underline-label">News-Events</p></a
+          >
+          <a href="https://hashedin.com/testimonials/" target="_blank"
+            ><p class="hover-underline-label">Testimonials</p></a
+          >
+        </div>
+        <div class="col-12 col-md-6 col-lg-3 grid-margin">
+          <h5
+            class="pb-2"
+            style="
+              color: #00635b;
+              margin-top: 10px;
+              font-size: 24px;
+              font-weight: bold;
+            "
+          >
+            Our address
+          </h5>
+          <p style="font-size: 16px; color: #19726b">
+            HashedIn by <strong>Deloitte</strong>
+            <br />
+            Sector 2, HSR Layout
+            <br />
+            Bengaluru(KA) - 560102
+          </p>
+          <div class="d-flex justify-content-center justify-content-md-start">
+            <a href="https://hashedin.com/" target="_blank"
+              ><span class="mdi mdi-earth"></span
+            ></a>
+            <a href="https://www.facebook.com/hashedin/" target="_blank"
+              ><span class="mdi mdi-facebook"></span
+            ></a>
+            <a href="https://twitter.com/hashedin/" target="_blank"
+              ><span class="mdi mdi-twitter"></span
+            ></a>
+            <a
+              href="https://www.instagram.com/hashedintechnologies/"
+              target="_blank"
+              ><span class="mdi mdi-instagram"></span
+            ></a>
+            <a href="https://in.linkedin.com/company/hashedin/" target="_blank"
+              ><span class="mdi mdi-linkedin"></span
+            ></a>
+            <a
+              href="https://www.youtube.com/channel/UC32lAAO0jMeV_4rWN7EhtBg"
+              target="_blank"
+              ><span class="mdi mdi-youtube"></span
+            ></a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="border-top">
+      <p class="text-center text-muted pt-4">
+        Copyright © Surway 2021. All rights reserved.
+      </p>
+    </footer>
+  </div>
+
+  <a
+    class="scroll-to-top rounded"
+    href="home#banner"
+    style="text-decoration: none"
+  >
+    <i class="mdi mdi-chevron-up" style="font-size: 28px"></i>
+  </a>
+</div>

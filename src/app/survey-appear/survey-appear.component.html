@@ -1,0 +1,113 @@
+<div class="wrapper">
+  <app-user-top-bar></app-user-top-bar>
+
+  <!-- Loading Spinner -->
+  <div class="loading_spinner" *ngIf="isSurveyAppearLoading">
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+
+  <!-- Loading Spinner -->
+  <div class="loading_spinner" *ngIf="isBeginSurveyLoading">
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+
+  <div class="content">
+    <div
+      id="survey-start"
+      style="display: block"
+      class="container-fluid"
+      style="height: 80vh; width: 100vw"
+    >
+      <div class="row m-0" *ngIf="questionId == -1 && survey">
+        <div class="col">
+          <!-- Survey Title Block  -->
+          <div class="p-4 w-100" style="background-color: #efefef">
+            <p class="h3 text-nowrap">{{ survey.name }}</p>
+          </div>
+          <!-- Main section -->
+          <div
+            class="d-flex justify-content-around p-0 w-100 bg--{{
+              colorTheme2
+            }} p-4 px-5 m-0"
+          >
+            <!-- Question Card -->
+            <div
+              class="card shadow-lg col-md-6 col-12"
+              style="border: 1px solid #efefef; border-radius: 8px"
+            >
+              <div class="card-body d-flex flex-column">
+                <p class="h4 card-title">{{ survey.name }}</p>
+                <div class="row justify-content-center">
+                  <img
+                    src="./../../assets/ill-survey-appear.svg"
+                    class="d-flex"
+                    style="max-height: 250px; max-width: 250px"
+                  />
+                </div>
+
+                <input
+                  type="text"
+                  class="card-text form-control card-text border--{{
+                    colorTheme2
+                  }}"
+                  placeholder="Enter password"
+                  *ngIf="survey.hasPassword"
+                  style="box-shadow: none"
+                  [(ngModel)]="surveyPassword"
+                  (keyup.enter)="beginSurvey()"
+                />
+                <hr />
+                <div
+                  class="row captcha-element justify-content-center"
+                  style="align-items: center; margin-bottom: 20px"
+                >
+                  <img
+                    [src]="captcha"
+                    style="max-width: 200px; max-height: 150px; height: 50px"
+                  />
+                  <input
+                    class="form-control"
+                    style="max-width: 30%; max-height: 150px; height: 40px"
+                    placeholder="Enter the captcha"
+                    id="captcha-input"
+                    type="text"
+                  />
+                  <i
+                    class="mdi mdi-refresh-circle"
+                    style="
+                      color: black;
+                      cursor: pointer;
+                      font-size: 28px;
+                      max-width: 30px;
+                    "
+                    (click)="onRefreshCaptcha()"
+                  ></i>
+                </div>
+                <div class="d-flex flex-row justify-content-center">
+                  <div
+                    class="col-lg-4 col-md-12 btn d-flex align-items-center justify-content-between btn--{{
+                      colorTheme
+                    }}"
+                    (click)="beginSurvey()"
+                  >
+                    <a> Begin </a>
+                    <i class="mdi mdi-arrow-right"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <app-attempt-question
+      [colorTheme]="colorTheme"
+      *ngIf="questionId != -1 && survey"
+    ></app-attempt-question>
+  </div>
+</div>
+
+<div *ngIf="isSurveyCompleted">
+  <app-alert-modal></app-alert-modal>
+</div>

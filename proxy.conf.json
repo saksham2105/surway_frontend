@@ -1,0 +1,8 @@
+{
+  "/surway/*": {
+    "target": "https://surway-backend.herokuapp.com/",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  }
+}

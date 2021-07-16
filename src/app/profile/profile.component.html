@@ -1,0 +1,42 @@
+<!-- Loading Spinner -->
+<div class="loading_spinner" *ngIf="isLoading">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+
+<div class="profile" *ngIf="!isLoading">
+  <!-- Page Wrapper -->
+
+  <div id="wrapper" style="background-color: #00635b">
+    <app-profile-side-bar
+      id="sidebar"
+      style="z-index: 999"
+    ></app-profile-side-bar>
+
+    <!-- Content Wrapper -->
+    <div
+      id="content-wrapper"
+      style="width: 100%"
+      class="d-flex flex-column"
+      [ngStyle]="{ 'margin-left': isSideBarHidden ? '6.5rem' : '14rem' }"
+    >
+      <!-- Main Content -->
+      <div id="content">
+        <app-user-top-bar></app-user-top-bar>
+        <app-profile-block></app-profile-block>
+      </div>
+      <!-- End of Main Content -->
+
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Surway 2021</span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
+    </div>
+    <!-- End of Content Wrapper -->
+  </div>
+  <!-- End of Page Wrapper -->
+</div>

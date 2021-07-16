@@ -1,0 +1,65 @@
+<div class="wrapper container-fluid" *ngIf="!isNext">
+  <div class="header" style="margin-top: 12px">
+    <h4 class="text-muted">Launch Your Survey 🚀</h4>
+    <hr style="margin-top: -3px" />
+  </div>
+  <!-- Set public/private section -->
+  <div>
+    <p class="h5">Do you want to launch the survey publicly?</p>
+    <button
+      class="btn rounded mx-2"
+      [ngClass]="{ selected: isPublic }"
+      (click)="isPublic = true; showPasswordField = false"
+    >
+      Yes
+    </button>
+    <button
+      class="btn rounded mx-2"
+      [ngClass]="{ selected: !isPublic }"
+      (click)="isPublic = false"
+    >
+      No
+    </button>
+  </div>
+  <!-- Set password section -->
+  <div *ngIf="!isPublic" style="margin-top: 12px">
+    <p class="h5">Do you want to set a password for the survey?</p>
+    <button
+      class="btn rounded mx-2"
+      [ngClass]="{ selected: showPasswordField }"
+      (click)="showPasswordField = true"
+    >
+      Yes
+    </button>
+    <button
+      class="btn rounded mx-2"
+      [ngClass]="{ selected: !showPasswordField }"
+      (click)="showPasswordField = false"
+    >
+      No
+    </button>
+  </div>
+  <!-- Password field -->
+
+  <div *ngIf="!isPublic && showPasswordField" class="form-floating mb-3">
+    <input
+      type="text"
+      name="password"
+      class="form-control w-md-75 my-2"
+      id="password"
+      [(ngModel)]="survey.password"
+      placeholder="Enter your password"
+    />
+    <label for="password">Enter your password</label>
+  </div>
+  <div *ngIf="showPasswordField" style="margin-top: 4px">
+    <label style="color: red">Please enter the password to continue!</label>
+  </div>
+
+  <div class="float-right">
+    <button class="btn rounded my-2" id="next-btn" (click)="next()">
+      Next
+    </button>
+  </div>
+</div>
+<app-survey-share *ngIf="isNext" [userGroups]="userGroups"> </app-survey-share>

@@ -1,0 +1,29 @@
+<div>
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">{{ loginError }}</h5>
+  </div>
+  <div style="text-align: center">
+    <img
+      [src]="imagePath"
+      style="max-height: 200px; max-width: 200px; margin-top: 1rem"
+    />
+    <div
+      class="modal-body"
+      style="
+        color: red;
+        background-color: rgb(255, 206, 206);
+        border-radius: 0.5rem;
+        font-weight: bolder;
+        font-size: 1.5rem;
+      "
+    >
+      {{ errorDescription }}
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="onClose()">
+      Retry
+    </button>
+  </div>
+</div>

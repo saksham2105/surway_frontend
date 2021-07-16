@@ -1,0 +1,36 @@
+$primary-color: #00635b;
+$primary-color-lite: #ccdfde;
+i {
+  color: black;
+}
+input {
+  color: black;
+  &:focus {
+    color: black;
+  }
+}
+#add-new-option-btn {
+  border: 1px solid $primary-color;
+  background-color: white;
+  color: $primary-color;
+  &:hover {
+    background-color: $primary-color;
+    color: white;
+    & i {
+      color: white;
+    }
+  }
+  & i {
+    color: $primary-color;
+  }
+  float: left;
+}
+button {
+  width: min-content;
+  &:hover > i {
+    color: red;
+  }
+  &:active {
+    box-shadow: none;
+  }
+}

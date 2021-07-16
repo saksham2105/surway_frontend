@@ -1,0 +1,126 @@
+<div class="container-fluid">
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h3 style="color: #00635b">{{ groupHeader }}</h3>
+    <button
+      type="button"
+      style="font-size: 16px; background-color: #00635b; color: white"
+      class="d-sm-inline-block btn btn-sm shadow-sm"
+      (click)="onCreateGroup()"
+    >
+      <i class="mdi mdi-account-group" style="margin-right: 10px"></i>
+      Create group
+    </button>
+  </div>
+
+  <div class="container-fluid" style="text-align: center">
+    <h6
+      style="
+        color: lightslategrey;
+        font-size: 20px;
+        padding-top: 2%;
+        font-weight: bold;
+      "
+    >
+      By default, the survey will be sent to the entire group at once.
+      <br />To Create Groups, tap on Create Button
+    </h6>
+    <hr style="margin: 3%" />
+  </div>
+
+  <!-- Loading Spinner -->
+  <div
+    class="loading_spinner"
+    *ngIf="isContactGroupLoading; else contactGroupContent"
+  >
+    <app-loading-spinner></app-loading-spinner>
+    <p>Loading.....</p>
+  </div>
+
+  <ng-template #contactGroupContent>
+    <div
+      class="container-fluid"
+      *ngIf="contactGroupsList.length > 0; else empty1"
+    >
+      <div class="row card-row d-flex justify-content-center">
+        <div
+          class="col-md-3 col-sm-6 col-lg-4 col-xs-12"
+          *ngFor="let item of contactGroupsList; let i = index"
+        >
+          <div
+            (click)="onGroupItemClick(item)"
+            class="tab-content card-info shadow-lg p-3 mb-5 bg-white"
+            style="max-width: 360px; min-width: 160px"
+          >
+            <div class="row">
+              <div class="col d-flex align-items-center">
+                <div class="row card-info-row">
+                  <!-- Card Content-->
+                  <div
+                    class="card"
+                    style="border: none; max-width: 140px; max-height: 140px"
+                  >
+                    <img
+                      class="category-image"
+                      style="border-radius: 4px"
+                      src="./../../../assets/community.svg"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="row assigned-survey-footer" style="font-size: 16px">
+                  <p style="margin-top: -4px">
+                    Group :
+                    <strong
+                      ><span class="main-content" style="color: black">
+                        {{ item.groupName }}
+                      </span>
+                    </strong>
+                  </p>
+                  <p class="question-total">
+                    Members :
+                    <strong> {{ item.groupMembers.length }} </strong>
+                  </p>
+                </div>
+              </div>
+              <div class="footer_card">
+                <hr />
+                <p class="text-truncate">
+                  Last Edited on:
+                  <strong>
+                    <span class="main-content"
+                      >{{ item.timestamp | date: "MMMM dd, YYYY" }}
+                    </span></strong
+                  >
+                </p>
+              </div>
+            </div>
+            <!-- Card content ENDS-->
+          </div>
+        </div>
+        <div *ngIf="isGroupModal">
+          <app-base-modal></app-base-modal>
+        </div>
+        <app-payment-confirmation-modal></app-payment-confirmation-modal>
+        <app-alert-modal></app-alert-modal>
+      </div>
+    </div>
+
+    <ng-template #empty1>
+      <div class="empty_block xs-12" style="text-align: center; margin-top: 2%">
+        <img
+          style="height: 300px; width: 300px"
+          src="./../../../assets/no_contact_groups.svg"
+          alt="no data"
+        />
+        <h3 style="margin-top: 2%"><i>No Contact Groups Created.</i></h3>
+      </div>
+      <div *ngIf="isGroupModal">
+        <app-base-modal></app-base-modal>
+      </div>
+      <app-payment-confirmation-modal></app-payment-confirmation-modal>
+      <app-alert-modal></app-alert-modal>
+    </ng-template>
+  </ng-template>
+</div>

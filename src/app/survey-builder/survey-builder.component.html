@@ -1,0 +1,104 @@
+<app-user-top-bar></app-user-top-bar>
+<!-- Nav Head Bar -->
+<nav
+  *ngIf="isNavBarVisible"
+  class="
+    navbar navbar-expand-lg navbar-light
+    bg-light
+    row
+    d-flex
+    flex-row
+    justify-content-around
+  "
+  id="survey-builder-nav-bar"
+>
+  <!-- Launch Survey Link -->
+  <div
+    *ngIf="!isPreviewMode"
+    class="rounded col-md-3 my-1 col-12 border--{{ colorTheme }} btn--{{
+      colorTheme
+    }} row d-flex align-items-center"
+    style="cursor: pointer"
+    (click)="launchV1()"
+  >
+    <i class="mdi mdi-rocket-launch color--{{ colorTheme }} col-2"></i>
+    <a
+      class="btn rounded text-nowrap col-3"
+      [ngClass]="{ disabled: isPreviewMode }"
+      >Launch Survey</a
+    >
+  </div>
+  <!-- Analyze survey survey Link -->
+  <div
+    id="enable-disable-div"
+    class="rounded col-md-3 my-1 col-12  d-flex align-items-center div-inactive--{{
+      colorTheme
+    }} btn--{{ colorTheme }}"
+    (click)="changePreview()"
+  >
+    <i class="mdi mdi-owl col-2"></i>
+    <a class="btn rounded text-nowrap col-3">Analyze Survey</a>
+  </div>
+  <!-- Input field to edit survey title -->
+  <div
+    *ngIf="!isPreviewMode"
+    id="surveyTitleDiv"
+    style="background-color: white"
+    class="rounded col-md-3 my-1 col-12 d-flex justify-content-start align-items-center border--{{
+      colorTheme
+    }} row"
+  >
+    <i class="mdi mdi-lead-pencil color--{{ colorTheme }} col-2"></i>
+    <input
+      type="text"
+      class="rounded form-control border-0 text-truncate col-10 color--{{
+        colorTheme
+      }}"
+      [(ngModel)]="survey.name"
+      id="surveyTitle"
+      [disabled]="isPreviewMode"
+    />
+  </div>
+</nav>
+<!-- Loading Spinner -->
+<div class="loading_spinner" *ngIf="isBuilderLoading">
+  <app-loading-spinner></app-loading-spinner>
+  <p>Loading.....</p>
+</div>
+<div id="builder-main-content" *ngIf="!isBuilderLoading">
+  <!-- Builder Main Content -->
+  <div class="main-content-wrapper bg-white">
+    <div class="d-flex justify-content-between align-items-center">
+      <p class="h2">Survey Editor</p>
+      <div class="col-2" style="margin-right: 0.5rem">
+        <button
+          *ngIf="!isPreviewMode"
+          class="btn rounded border--{{ colorTheme }} color--{{
+            colorTheme
+          }} btn--{{ colorTheme }}"
+          style="font-size: 20px"
+          (click)="updateSurvey()"
+        >
+          <i
+            class="mdi mdi-content-save-edit color--{{ colorTheme }}"
+            style="font-size: 20px"
+          ></i>
+          Save
+        </button>
+      </div>
+    </div>
+    <app-question-block
+      *ngFor="let question of survey.questions; let i = index"
+      [question]="question"
+      [questionPos]="i"
+      [colorTheme]="colorTheme"
+      class="mx-3"
+    ></app-question-block>
+  </div>
+  <!-- End of Builder Main Content -->
+</div>
+<app-base-modal></app-base-modal>
+<app-payment-confirmation-modal></app-payment-confirmation-modal>
+<div *ngIf="isPublicSurveyLaunchModal || isPrivateSurveyLaunchModal">
+  <app-alert-modal></app-alert-modal>
+</div>

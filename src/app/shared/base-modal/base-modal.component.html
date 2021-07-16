@@ -1,0 +1,42 @@
+<ng-container *ngIf="display$ | async as display">
+  <section [class.open]="display === 'open'" (click)="close()">
+    <div (click)="$event.stopPropagation()" class="col-6 h-250">
+      <button class="close rounded-circle" type="button" (click)="close()">
+        <i class="mdi mdi-close text-danger"></i>
+      </button>
+
+      <!-- Error Handling Modals -->
+      <div class="typeErrorHandling" *ngIf="isErrorHandlingModal">
+        <app-alert></app-alert>
+      </div>
+
+      <!-- Question Editor Modal -->
+      <div class="questionEditing" *ngIf="isQuestionEditorModal">
+        <app-question-editor
+          [editQuestionPos]="editQuestionPos"
+        ></app-question-editor>
+      </div>
+
+      <!-- Survey Share Options Modal -->
+      <div *ngIf="isSurveyShareModal">
+        <app-survey-share> </app-survey-share>
+      </div>
+      <!-- Launch v1 Modal -->
+      <div *ngIf="isLaunchV1Modal">
+        <app-launch-v1> </app-launch-v1>
+      </div>
+      <!-- Launch Error if survey not found -->
+      <div *ngIf="isSurveyError">
+        <app-survey-error></app-survey-error>
+      </div>
+      <!-- Contact Group Modal -->
+      <div class="contactGroupModal" *ngIf="isContactGroupModal">
+        <app-group-modal-ui></app-group-modal-ui>
+      </div>
+      <!-- Template Purchase Modal -->
+      <div class="templatePurchaseModal" *ngIf="isTemplatePurchaseModal">
+        <app-template-purchase></app-template-purchase>
+      </div>
+    </div>
+  </section>
+</ng-container>

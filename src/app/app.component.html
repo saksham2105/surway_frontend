@@ -1,0 +1,7 @@
+<!-- Loading Spinner -->
+<div class="loading_spinner" *ngIf="isLoading">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+<div class="parent">
+  <router-outlet *ngIf="!isLoading"></router-outlet>
+</div>

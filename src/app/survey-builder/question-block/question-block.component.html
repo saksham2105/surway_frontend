@@ -1,0 +1,169 @@
+<div
+  class="wrapper card shadow rounded bg--{{ colorTheme2 }} border--{{
+    colorTheme
+  }}"
+>
+  <!--Start of Section Block Top Bar -->
+  <div
+    class="top-bar p-2 bg--{{ colorTheme }}"
+    [ngClass]="{ 'double-height': isPreviewMode }"
+  >
+    <div class="row">
+      <div class="col-10">
+        <div class="question-row mx-2">
+          <p
+            class="h5 text-white"
+            style="align-items: center; line-height: 2rem"
+          >
+            Q {{ questionPos + 1 }}. {{ question.title }}
+            <span *ngIf="question.isMandatory" class="text-white">
+              &nbsp; ✱
+            </span>
+          </p>
+        </div>
+      </div>
+      <div class="col-2">
+        <div class="d-flex flex-row flex-end justify-content-end">
+          <!-- Questiion edit button -->
+          <button
+            *ngIf="!isPreviewMode"
+            class="edit-btn--{{ colorTheme }} rounded text-white mx-2 bg--{{
+              colorTheme
+            }}  "
+            (click)="editQuestion()"
+            style="
+              padding-left: 6px;
+              padding-right: 6px;
+              border: 3px solid white;
+            "
+          >
+            <i class="mdi mdi-pencil-outline mdi-24px"></i>
+          </button>
+          <!-- Question delete button -->
+          <button
+            *ngIf="!isPreviewMode"
+            class="edit-btn--{{ colorTheme }} rounded text-white bg--{{
+              colorTheme
+            }} "
+            (click)="deleteQuestion()"
+            style="
+              padding-left: 6px;
+              padding-right: 6px;
+              border: 3px solid white;
+            "
+          >
+            <i class="mdi mdi-trash-can-outline mdi-24px"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <!--Start of Question Content Wrapper -->
+  </div>
+  <!-- End of Section Block Top Bar -->
+
+  <div class="container-fluid ques-options">
+    <h5 class="text-muted" style="margin-top: 12px">Answer Type:</h5>
+    <!-- Options preview block (multiple choice, checkbox) -->
+
+    <div
+      *ngIf="
+        question.questionCategory.categoryName === 'multiple' ||
+        question.questionCategory.categoryName === 'checkbox'
+      "
+      class="row mx-3"
+    >
+      <div
+        class="
+          col-md-6 col-xs-12
+          d-flex
+          align-items-center
+          justify-content-start
+        "
+        *ngFor="let option of question.options; let i = index"
+      >
+        <input
+          type="radio"
+          name="questionPos"
+          id="question-{{ questionPos }}-option-{{ i }}"
+          class="regular-radio--{{ colorTheme }}"
+          *ngIf="question.questionCategory.categoryName === 'multiple'"
+          [disabled]="isPreviewMode"
+        />
+        <input
+          type="checkbox"
+          name="questionPos"
+          id="question-{{ questionPos }}-option-{{ i }}"
+          class="regular-checkbox--{{ colorTheme }}"
+          *ngIf="question.questionCategory.categoryName === 'checkbox'"
+          [disabled]="isPreviewMode"
+        />
+        <label
+          [textContent]="option"
+          class="mt-3"
+          for="-option-{{ i }}"
+        ></label>
+      </div>
+    </div>
+
+    <!-- Preview block for slider -->
+    <div
+      class="row ml-2"
+      *ngIf="question.questionCategory.categoryName === 'slider'"
+    >
+      <!-- Bootstrap slider -->
+      <p class="h5">Min:{{ sliderMin }}</p>
+      <p class="h5">Max:{{ sliderMax }}</p>
+      <input
+        type="range"
+        class="form-range w-75 bg--{{ colorTheme2 }}"
+        min="{{ sliderMin }}"
+        max="{{ sliderMax }}"
+        step="1"
+        [(ngModel)]="currentSliderValue"
+        list="tickmarks"
+        [disabled]="isPreviewMode"
+      />
+    </div>
+
+    <!-- Preview block for Date -->
+    <div
+      class="row ml-3"
+      *ngIf="question.questionCategory.categoryName === 'date'"
+    >
+      <input
+        class="form-control date-picker--{{
+          colorTheme
+        }} w-50 col-md-3 col-xs-3"
+        type="date"
+        placeholder="dd/mm/yyyy"
+        [disabled]="isPreviewMode"
+      />
+    </div>
+
+    <!-- Preview block for Text -->
+    <div
+      class="row ml-1 d-flex justify-content-start"
+      *ngIf="question.questionCategory.categoryName === 'text'"
+    >
+      <input
+        class="form-control col-md-8 col-8"
+        type="text"
+        placeholder="Answer"
+        [disabled]="isPreviewMode"
+      />
+    </div>
+  </div>
+
+  <!-- Start of Question Block Bottom Bar -->
+  <div class="bottom-bar d-flex justify-content-center my-2">
+    <button
+      *ngIf="!isPreviewMode"
+      class="btn border-0 text-nowrap add-question-btn--{{ colorTheme }}"
+      (click)="addQuestion()"
+    >
+      Add Question
+      <i class="mdi mdi-plus-thick"></i>
+    </button>
+    <!-- End of Question Block Bottom Bar -->
+  </div>
+</div>

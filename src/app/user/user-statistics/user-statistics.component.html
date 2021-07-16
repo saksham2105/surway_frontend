@@ -1,0 +1,549 @@
+<!-- Begin Page Content -->
+<div class="container-fluid" id="stats-container">
+  <!-- Loading Spinner -->
+  <div class="loading_spinner" *ngIf="isLoading; else statsContent">
+    <app-loading-spinner></app-loading-spinner>
+    <p>Loading.....</p>
+  </div>
+
+  <ng-template #statsContent>
+    <div
+      class="stats-screen"
+      *ngIf="mySurveyList.length > 0; else emptyMySurveys"
+    >
+      <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <ul class="nav nav-tabs" style="margin: 10px">
+          <li class="nav-item" id="nav-item-stats">
+            <a
+              class="nav-link"
+              [ngClass]="{ active: isStats }"
+              style="cursor: pointer; color: #00635b"
+              aria-current="page"
+              data-toggle="tab"
+              (click)="onStats(true)"
+              >Survey Statistics</a
+            >
+          </li>
+          <li class="nav-item" id="nav-item-participants">
+            <a
+              class="nav-link"
+              [ngClass]="{ active: !isStats }"
+              data-toggle="tab"
+              style="cursor: pointer; color: #00635b"
+              (click)="onStats(false)"
+              >Participants</a
+            >
+          </li>
+        </ul>
+        <div class="right-panel">
+          <button
+            *ngIf="isStats || (!isStats && participantsList.length > 0)"
+            id="stats-generate-btn"
+            style="
+              font-size: 16px;
+              background-color: #00635b;
+              color: white;
+              margin-right: 0.5rem;
+            "
+            class="d-sm-inline-block btn btn-sm shadow-sm"
+            (click)="onStatsGenerateReport()"
+          >
+            <span class="mr-2">
+              <i class="mdi mdi-cloud-download text-white"></i>
+            </span>
+            Generate Report
+          </button>
+          <a
+            style="font-size: 16px; background-color: #00635b; color: white"
+            class="d-sm-inline-block btn btn-sm shadow-sm"
+          >
+            <span class="mr-2">
+              <i class="mdi mdi-book text-white"></i>
+            </span>
+            <select
+              id="survey-stats"
+              (change)="surveyStatsLoad($event.target.value)"
+              style="background-color: #00635b; color: white"
+            >
+              <!-- NG FOR survey list -->
+              <option
+                *ngFor="let item of mySurveyList"
+                [value]="item.surveyID"
+                [attr.selected]="item.surveyID === surveyID ? true : null"
+              >
+                {{ item.surveyName }}
+              </option>
+            </select>
+          </a>
+        </div>
+      </div>
+
+      <div class="content-stats" *ngIf="isStats; else participants">
+        <!-- First Content Row -->
+        <div class="row">
+          <!-- Survey Title-->
+          <div class="col-xl-3 col-md-3 col-sm-6 col-xs-6 col-6 mb-4">
+            <div
+              class="card shadow h-100 py-2"
+              style="border-left: 4px solid #c388fb"
+            >
+              <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                    <div
+                      class="text-xs font-weight-bold text-uppercase mb-1"
+                      style="color: #c388fb"
+                    >
+                      Survey Title
+                    </div>
+                    <div class="h6 mb-0 font-weight-bold text-gray-800">
+                      {{ surveyName }}
+                    </div>
+                  </div>
+                  <div class="col-auto">
+                    <span style="font-size: 26px">
+                      <i class="mdi mdi-airballoon" style="color: #c388fb"></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Survey Category -->
+          <div class="col-xl-3 col-md-3 col-sm-6 col-xs-6 col-6 mb-4">
+            <div
+              class="card shadow h-100 py-2"
+              style="border-left: 4px solid #edc324"
+            >
+              <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                    <div
+                      class="text-xs font-weight-bold text-uppercase mb-1"
+                      style="color: #edc324"
+                    >
+                      Survey Category
+                    </div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                      {{ surveyCategory }}
+                    </div>
+                  </div>
+                  <div class="col-auto">
+                    <span style="font-size: 26px">
+                      <i
+                        class="mdi mdi-hexagon-multiple"
+                        style="color: #edc324"
+                      ></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Created on -->
+          <div class="col-xl-3 col-md-3 mb-4">
+            <div
+              class="card shadow h-100 py-2"
+              style="border-left: 4px solid #008ee3"
+            >
+              <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                    <div
+                      class="text-xs font-weight-bold text-uppercase mb-1"
+                      style="color: #008ee3"
+                    >
+                      Created on
+                    </div>
+                    <div class="row no-gutters align-items-center">
+                      <div class="col-auto">
+                        <div
+                          class="h5 mb-0 mr-3 font-weight-bold text-gray-800"
+                        >
+                          {{ surveyCreatedOn | date: "MMMM dd, YYYY" }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-auto">
+                    <span style="font-size: 26px">
+                      <i class="mdi mdi-av-timer" style="color: #008ee3"></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Last Response -->
+          <div class="col-xl-3 col-md-3 mb-4">
+            <div
+              class="card shadow h-100 py-2"
+              style="border-left: 4px solid #ff9e64"
+            >
+              <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                    <div
+                      class="text-xs font-weight-bold text-uppercase mb-1"
+                      style="color: #ff9e64"
+                    >
+                      Last Response
+                    </div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                      {{
+                        surveyLastResponse != ""
+                          ? (surveyLastResponse | date: "MMMM dd, YYYY hh:mm a")
+                          : "No Last Response"
+                      }}
+                    </div>
+                  </div>
+                  <div class="col-auto">
+                    <span style="font-size: 26px">
+                      <i class="mdi mdi-file-clock" style="color: #ff9e64"></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Second Content Row Card -->
+        <div class="row">
+          <!-- Views -->
+          <div class="col-xl-3 col-md-3 col-sm-6 col-xs-6 col-6 mb-4">
+            <div
+              class="card shadow h-100 py-2"
+              style="border-left: 4px solid #f0487d"
+            >
+              <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                    <div
+                      class="text-xs font-weight-bold text-uppercase mb-1"
+                      style="color: #f0487d"
+                    >
+                      Views
+                    </div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                      {{ surveyViews }}
+                    </div>
+                  </div>
+                  <div class="col-auto">
+                    <span style="font-size: 26px">
+                      <i class="mdi mdi-eye" style="color: #f0487d"></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Responses -->
+          <div class="col-xl-3 col-md-3 col-sm-6 col-xs-6 col-6 mb-4">
+            <div
+              class="card shadow h-100 py-2"
+              style="border-left: 4px solid #993d2e"
+            >
+              <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                    <div
+                      class="text-xs font-weight-bold text-uppercase mb-1"
+                      style="color: #993d2e"
+                    >
+                      Responses
+                    </div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                      {{ surveyResponses }}
+                    </div>
+                  </div>
+                  <div class="col-auto">
+                    <span style="font-size: 26px">
+                      <i class="mdi mdi-telegram" style="color: #993d2e"></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Engagement Rate -->
+          <div class="col-xl-3 col-md-3 col-sm-6 col-xs-6 col-6 mb-4">
+            <div
+              class="card shadow h-100 py-2"
+              style="border-left: 4px solid #5e7e31"
+            >
+              <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                    <div
+                      class="text-xs font-weight-bold text-uppercase mb-1"
+                      style="color: #5e7e31"
+                    >
+                      Engagement Rate
+                    </div>
+                    <div class="row no-gutters align-items-center">
+                      <div class="col-auto">
+                        <div
+                          class="h5 mb-0 mr-3 font-weight-bold text-gray-800"
+                        >
+                          {{ engagementRate }}%
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-auto">
+                    <span style="font-size: 26px">
+                      <i
+                        class="mdi mdi-math-compass"
+                        style="color: #5e7e31"
+                      ></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-3 col-md-3 col-sm-6 col-xs-6 col-6 mb-4">
+            <div
+              class="card shadow h-100 py-2"
+              style="border-left: 4px solid #6497b1"
+            >
+              <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                    <div
+                      class="text-xs font-weight-bold text-uppercase mb-1"
+                      style="color: #6497b1"
+                    >
+                      Survey Status
+                    </div>
+                    <div
+                      *ngIf="surveyStatus"
+                      class="h5 mb-0 font-weight-bold"
+                      style="color: green"
+                    >
+                      Active
+                    </div>
+                    <div
+                      *ngIf="!surveyStatus"
+                      class="h5 mb-0 font-weight-bold"
+                      style="color: red"
+                    >
+                      Inactive
+                    </div>
+                  </div>
+                  <div class="col-auto">
+                    <span style="font-size: 26px">
+                      <i class="mdi mdi-web" style="color: #6497b1"></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div class="row" style="margin-left: 20px" id="enable-disable-survey">
+          <div class="col-8">
+            <p class="font-weight-bold text-gray-800" style="font-size: 18px">
+              Do you want to disable/enable this survey?
+              <span
+                style="
+                  cursor: pointer;
+                  color: blue;
+                  font-style: italic;
+                  margin-right: 20px;
+                  margin-left: 10px;
+                "
+                >Tap on this 👉</span
+              >
+            </p>
+          </div>
+          <div class="col-4" style="margin-top: -20px">
+            <input
+              type="checkbox"
+              [checked]="surveyStatus"
+              [attr.id]="'toggle'"
+              (change)="onEnableDisableSurvey(surveyStatus, surveyID)"
+            />
+            <label [attr.for]="'toggle'"></label>
+          </div>
+        </div>
+
+        <h3 style="color: #00635b; margin-top: 10px">Graphical Stats</h3>
+        <!-- CHARTS -->
+        <div class="row">
+          <!-- Average Time Taken Chart -->
+          <div class="col-xl-12 col-lg-12">
+            <div class="card shadow mb-4" style="min-height: 350px">
+              <!-- Card Header -->
+              <div class="card-header py-3" style="background-color: #e5efee">
+                <h6 class="m-0 font-weight-bold" style="color: #00635b">
+                  Average Time taken - {{ averageQuesTimeTaken }} (secs)
+                </h6>
+              </div>
+              <!-- Card Body -->
+              <div class="card-body">
+                <div class="chart-area">
+                  <canvas
+                    id="averageTimeTakenChart"
+                    baseChart
+                    [datasets]="averageTimeTakenChartData"
+                    [labels]="averageTimeTakenChartLabels"
+                    [options]="averageTimeTakenChartOptions"
+                    [chartType]="averageTimeTakenChartType"
+                    *ngIf="averageTimeTakenChartLabels.length > 0; else noGraph"
+                  ></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <div class="card shadow mb-4" style="min-height: 350px">
+                <!-- Card Header -->
+                <div
+                  class="
+                    card-header
+                    py-3
+                    d-flex
+                    flex-row
+                    align-items-center
+                    justify-content-between
+                  "
+                  style="background-color: #e5efee"
+                >
+                  <h6 class="m-0 font-weight-bold" style="color: #00635b">
+                    Responses Timeline
+                  </h6>
+                  <select
+                    id="survey-views-addons"
+                    style="
+                      background-color: #00635b;
+                      color: white;
+                      border-radius: 20px;
+                      padding: 4px;
+                    "
+                    (change)="onResponseTimelineChange($event.target.value)"
+                  >
+                    <!-- NG FOR survey list -->
+                    <option value="today">Today</option>
+                    <option value="week">This week</option>
+                    <option value="month">This month</option>
+                    <option value="year">This year</option>
+                  </select>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                  <div class="chart-area">
+                    <canvas
+                      id="viewsResponseChart"
+                      baseChart
+                      [datasets]="responseChartData"
+                      [labels]="responseChartLabels"
+                      [options]="responseChartOptions"
+                      [chartType]="responseChartType"
+                      [colors]="responseChartColors"
+                      *ngIf="isResponseTimelineChartContainsData; else noGraph"
+                    ></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #participants>
+    <div class="row">
+      <div class="col">
+        <div class="card shadow mb-4" style="margin-top: 10px">
+          <div
+            class="
+              card-header
+              py-3
+              d-flex
+              flex-row
+              align-items-center
+              justify-content-between
+            "
+            style="background-color: #e5efee"
+          >
+            <h6 class="m-0 font-weight-bold" style="color: #00635b">
+              All Participants
+            </h6>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table
+                class="table table-bordered"
+                id="dataTable"
+                width="100%"
+                cellspacing="0"
+                *ngIf="participantsList.length > 0; else noTableData"
+              >
+                <thead>
+                  <tr>
+                    <th>Participant Mail</th>
+                    <th>Time Taken (in secs)</th>
+                    <th>Answered at</th>
+                  </tr>
+                </thead>
+
+                <tbody *ngFor="let item of participantsList; let i = index">
+                  <tr>
+                    <td>{{ item.userMail }}</td>
+                    <td>{{ item.actualTimeTaken }}</td>
+                    <td>
+                      {{ item.timestamp | date: "MMMM dd, YYYY hh:mm a" }}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <ng-template #noTableData>
+                <h4>No Participants.</h4>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #noGraph>
+    <div class="empty_block" style="text-align: center; margin-top: 2%">
+      <img
+        style="max-width: 250px; max-height: 250px"
+        src="./../../../assets/incomplete_graph.svg"
+        alt="no graph"
+      />
+      <h3 style="margin-top: 2%; font-size: 18px">
+        <i>{{ noGraphTitle }}</i>
+      </h3>
+    </div>
+  </ng-template>
+
+  <ng-template #emptyMySurveys>
+    <div class="empty_block xs-12">
+      <img
+        src="./../../../assets/no_my_surveys.svg"
+        style="max-height: 180px"
+        alt="no data"
+      />
+      <h3 style="margin-top: 5px">
+        <i>Create Survey to see your survey Statistics</i>
+      </h3>
+    </div>
+  </ng-template>
+</div>
+<app-payment-confirmation-modal></app-payment-confirmation-modal>
+<app-alert-modal></app-alert-modal>

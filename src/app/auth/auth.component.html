@@ -1,0 +1,212 @@
+<!-- Loading Spinner -->
+<div class="loading_spinner" *ngIf="isLoading">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+
+<main
+  class="d-flex align-items-center min-vh-100 py-3 py-md-0"
+  class="login"
+  [ngStyle]="{ 'background-color': colorCode }"
+  *ngIf="!isLoading"
+>
+  <div class="container">
+    <div class="card login-card">
+      <div class="row no-gutters">
+        <!-- Left Image in Login Card -->
+        <div class="col-md-5">
+          <img [src]="authImagePath" alt="login" class="login-card-img" />
+        </div>
+        <!-- Login Form UI in Login Card -->
+        <div class="col-md-7">
+          <div class="card-body">
+            <!-- Brand Details (Logo & Title) -->
+            <div class="brand-wrapper">
+              <img
+                id="brand_pic"
+                src="./../../assets/logo.svg"
+                alt="logo"
+                class="logo"
+              />
+              <p class="login-card-title">Surway</p>
+            </div>
+            <p class="login-card-description">{{ titleLogin }}</p>
+
+            <!------- FORM BEGINS!! ------->
+            <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+              <!-- First & Last Name Element -->
+              <div class="form-group row" *ngIf="loginType === 'Register'">
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="firstName"
+                    placeholder="First Name"
+                    formControlName="firstName"
+                  />
+                  <!-- Visual Validations for firstName input -->
+                  <div
+                    *ngIf="
+                      (loginForm.get('firstName').invalid &&
+                        loginForm.get('firstName').touched) ||
+                      loginForm.get('firstName').dirty
+                    "
+                  >
+                    <small
+                      *ngIf="loginForm.get('firstName').errors?.required"
+                      class="text-danger"
+                      >First Name is required
+                    </small>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="lastName"
+                    placeholder="Last Name"
+                    formControlName="lastName"
+                  />
+                  <!-- Visual Validations for lastName input -->
+                  <div
+                    *ngIf="
+                      (loginForm.get('lastName').invalid &&
+                        loginForm.get('lastName').touched) ||
+                      loginForm.get('lastName').dirty
+                    "
+                  >
+                    <small
+                      *ngIf="loginForm.get('lastName').errors?.required"
+                      class="text-danger"
+                      >Last Name is required
+                    </small>
+                  </div>
+                </div>
+              </div>
+              <!-- Form Email Element -->
+              <div class="form-group">
+                <!-- <label for="email">Email</label> -->
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  class="form-control"
+                  placeholder="Email address"
+                  formControlName="email"
+                  [class.is-invalid]="
+                    loginForm.get('email').invalid &&
+                    loginForm.get('email').touched
+                  "
+                />
+                <!-- Visual Validations for email input -->
+                <div
+                  *ngIf="
+                    (loginForm.get('email').invalid &&
+                      loginForm.get('email').touched) ||
+                    loginForm.get('email').dirty
+                  "
+                >
+                  <small
+                    *ngIf="loginForm.get('email').errors?.required"
+                    class="text-danger"
+                    >Email is required
+                  </small>
+
+                  <small
+                    *ngIf="loginForm.get('email').errors?.pattern"
+                    class="text-danger"
+                    >Please provide a valid email address
+                  </small>
+                </div>
+              </div>
+              <!-- Form Password Element -->
+              <div
+                class="form-group mb-4"
+                *ngIf="loginType != 'ForgotPassword'"
+              >
+                <!-- <label for="password">Password</label> -->
+                <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  class="form-control"
+                  placeholder="⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆"
+                  formControlName="password"
+                  [class.is-invalid]="
+                    loginForm.get('password').invalid &&
+                    loginForm.get('password').touched
+                  "
+                />
+                <!-- Visual Validations for password input -->
+                <div
+                  *ngIf="
+                    (loginForm.get('password').invalid &&
+                      loginForm.get('password').touched) ||
+                    loginForm.get('password').dirty
+                  "
+                >
+                  <small
+                    *ngIf="loginForm.get('password').errors?.required"
+                    class="text-danger"
+                    >Password is required
+                  </small>
+
+                  <small
+                    *ngIf="loginForm.get('password').errors?.pattern"
+                    class="text-danger"
+                    >Please provide a password greater than 6 words
+                  </small>
+                </div>
+              </div>
+
+              <!-- Login Button -->
+
+              <button
+                name="login"
+                id="auth-btn"
+                class="btn login-btn mb-4"
+                type="submit"
+                [disabled]="!loginForm.valid"
+              >
+                {{ btnName }}
+              </button>
+            </form>
+            <!------- FORM ENDS!! ------->
+
+            <!-- Forgot Password element -->
+            <p
+              class="forgot-password-link"
+              *ngIf="loginType != 'ForgotPassword'"
+            >
+              <a (click)="onForgotPasswordScreenTransition()"
+                >Forgot password?</a
+              >
+            </p>
+            <!-- Signup/Register element -->
+            <p class="login-card-footer-text" *ngIf="loginType != 'Register'">
+              Don't have an account?
+              <a class="text-reset" (click)="onRegisterScreenTransition()"
+                >Register here</a
+              >
+            </p>
+
+            <!-- Login element -->
+            <p class="login-card-footer-text" *ngIf="loginType != 'Login'">
+              Already have an account?
+              <a class="text-reset" (click)="onLoginScreenTransition()"
+                >Login here</a
+              >
+            </p>
+
+            <!-- Footer (Terms & Privacy Policy) -->
+            <nav class="login-card-footer-nav">
+              <!--Need to place at higher z-value on page-->
+              <app-base-modal></app-base-modal>
+              <a href="#!">Terms of use <strong> | </strong></a>
+              <a href="#!"> Privacy policy</a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

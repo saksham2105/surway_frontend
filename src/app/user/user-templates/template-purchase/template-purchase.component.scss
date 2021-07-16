@@ -1,0 +1,16 @@
+$primary-color: #00635b;
+p{
+  color: black;
+}
+.btn{
+  background-color: white;
+  color: $primary-color;
+  border: 1px solid $primary-color;
+  &:hover {
+    color: white;
+    background-color: $primary-color;
+    i {
+      color: white;
+    }
+  }
+}

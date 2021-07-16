@@ -1,0 +1,530 @@
+<!-- Begin Page Content -->
+<div class="container-fluid" id="dashboard-container">
+  <!-- Page Heading -->
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h3 style="color: #00635b">Dashboard</h3>
+    <button
+      id="dashboard-generate-btn"
+      style="font-size: 16px; background-color: #00635b; color: white"
+      class="d-sm-inline-block btn btn-sm shadow-sm"
+      (click)="onDashboardGenerateReport()"
+    >
+      <span class="mr-2">
+        <i class="mdi mdi-cloud-download text-white"></i>
+      </span>
+      Generate Report
+    </button>
+  </div>
+
+  <!-- Loading Spinner -->
+  <div class="loading_spinner" *ngIf="isLoading; else dashboardContent">
+    <app-loading-spinner></app-loading-spinner>
+    <p>Loading.....</p>
+  </div>
+
+  <ng-template #dashboardContent>
+    <div class="dashboard-content">
+      <!-- First Content Row -->
+      <div class="row">
+        <!-- Total No of surveys Card -->
+        <div class="col-xl-4 col-md-4 col-sm-6 col-xs-6 col-6 mb-4">
+          <div
+            class="card shadow h-100 py-2"
+            style="border-left: 4px solid #c388fb"
+          >
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div
+                    class="text-xs font-weight-bold text-uppercase mb-1"
+                    style="color: #c388fb"
+                  >
+                    Surveys
+                  </div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                    {{ countSurveys }}
+                  </div>
+                </div>
+                <div class="col-auto">
+                  <span style="font-size: 26px">
+                    <i class="mdi mdi-firebase" style="color: #c388fb"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Total No of responses Card -->
+        <div class="col-xl-4 col-md-4 col-sm-6 col-xs-6 col-6 mb-4">
+          <div
+            class="card shadow h-100 py-2"
+            style="border-left: 4px solid #c3aa1c"
+          >
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div
+                    class="text-xs font-weight-bold text-uppercase mb-1"
+                    style="color: #c3aa1c"
+                  >
+                    Responses
+                  </div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                    {{ surveyResponses }}
+                  </div>
+                </div>
+                <div class="col-auto">
+                  <span style="font-size: 26px">
+                    <i class="mdi mdi-telegram" style="color: #c3aa1c"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Avg Time Taken Card -->
+        <div class="col-xl-4 col-md-4 mb-4">
+          <div
+            class="card shadow h-100 py-2"
+            style="border-left: 4px solid #008ee3"
+          >
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div
+                    class="text-xs font-weight-bold text-uppercase mb-1"
+                    style="color: #008ee3"
+                  >
+                    Avg Time Taken
+                  </div>
+                  <div class="row no-gutters align-items-center">
+                    <div class="col-auto">
+                      <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                        {{ surveyAvgTimeTaken }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-auto">
+                  <span style="font-size: 26px">
+                    <i class="mdi mdi-av-timer" style="color: #008ee3"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Engagement Rate Card -->
+        <!-- <div class="col-xl-3 col-md-3 col-sm-6 col-xs-6 col-6 mb-4">
+      <div
+        class="card shadow h-100 py-2"
+        style="border-left: 4px solid #ff9e64"
+      >
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div
+                class="text-xs font-weight-bold text-uppercase mb-1"
+                style="color: #ff9e64"
+              >
+                Engagement Rate
+              </div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">4.3</div>
+            </div>
+            <div class="col-auto">
+              <span style="font-size: 26px">
+                <i class="mdi mdi-graphql" style="color: #ff9e64"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+      </div>
+
+      <!-- Second Content Row Card -->
+      <div class="row">
+        <!-- HU coins -->
+        <div class="col-xl-4 col-md-4 col-sm-6 col-xs-6 col-6 mb-4">
+          <div
+            class="card shadow h-100 py-2"
+            style="border-left: 4px solid #f0487d"
+          >
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div
+                    class="text-xs font-weight-bold text-uppercase mb-1"
+                    style="color: #f0487d"
+                  >
+                    HU Coins
+                  </div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                    {{ huCoins }}
+                  </div>
+                </div>
+                <div class="col-auto">
+                  <span style="font-size: 26px">
+                    <i class="mdi mdi-bitcoin" style="color: #f0487d"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Total no of Views Card -->
+        <div class="col-xl-4 col-md-4 col-sm-6 col-xs-6 col-6 mb-4">
+          <div
+            class="card shadow h-100 py-2"
+            style="border-left: 4px solid #993d2e"
+          >
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div
+                    class="text-xs font-weight-bold text-uppercase mb-1"
+                    style="color: #993d2e"
+                  >
+                    Views
+                  </div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                    {{ surveyViews }}
+                  </div>
+                </div>
+                <div class="col-auto">
+                  <span style="font-size: 26px">
+                    <i class="mdi mdi-eye" style="color: #993d2e"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Total no of Groups Card -->
+        <div class="col-xl-4 col-md-4 mb-4">
+          <div
+            class="card shadow h-100 py-2"
+            style="border-left: 4px solid #5e7e31"
+          >
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div
+                    class="text-xs font-weight-bold text-uppercase mb-1"
+                    style="color: #5e7e31"
+                  >
+                    Groups
+                  </div>
+                  <div class="row no-gutters align-items-center">
+                    <div class="col-auto">
+                      <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                        {{ countGroups }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-auto">
+                  <span style="font-size: 26px">
+                    <i
+                      class="mdi mdi-chemical-weapon"
+                      style="color: #5e7e31"
+                    ></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent 5 Surveys -->
+      <div class="card shadow mb-4" style="margin-top: 10px">
+        <div
+          class="
+            card-header
+            py-3
+            d-flex
+            flex-row
+            align-items-center
+            justify-content-between
+          "
+          style="background-color: #e5efee"
+        >
+          <h6 class="m-0 font-weight-bold" style="color: #00635b">
+            Recent 5 Surveys
+          </h6>
+          <div class="link" style="cursor: pointer; color: black">
+            <a
+              routerLink="/user/my-surveys"
+              routerLinkActive="active"
+              style="color: #0645ad; font-weight: bold"
+              (click)="onClickAllSurveysDashboard()"
+            >
+              <i class="mdi mdi-link"></i> All surveys
+            </a>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table
+              class="table table-bordered"
+              id="dataTable"
+              width="100%"
+              cellspacing="0"
+              *ngIf="recentSurveys.length > 0; else noTableData"
+            >
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Category</th>
+                  <th>Created on</th>
+                </tr>
+              </thead>
+
+              <tbody *ngFor="let item of recentSurveys; let i = index">
+                <tr>
+                  <td>{{ item.surveyName }}</td>
+                  <td>{{ item.surveyCategory }}</td>
+                  <td>{{ item.surveyCreationDate | date: "MMMM dd, YYYY" }}</td>
+                </tr>
+              </tbody>
+            </table>
+            <ng-template #noTableData>
+              <h4>No Surveys are created.</h4>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+
+      <!-- CHARTS -->
+      <div class="row">
+        <!-- Overall Views Chart -->
+        <div class="col-xl-8 col-lg-7">
+          <div class="card shadow mb-4">
+            <!-- Card Header -->
+            <div class="card-header py-3" style="background-color: #e5efee">
+              <h6 class="m-0 font-weight-bold" style="color: #00635b">
+                Overall Views
+              </h6>
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+              <div class="chart-area">
+                <canvas
+                  id="overallViewChart"
+                  baseChart
+                  [datasets]="overallViewChartData"
+                  [labels]="overallViewChartLabels"
+                  [options]="overallViewChartOptions"
+                  [chartType]="overallViewChartType"
+                  *ngIf="viewsMonthValues.length > 0; else noGraph"
+                ></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Survey Categorization Chart -->
+        <div class="col-xl-4 col-lg-5">
+          <div class="card shadow mb-4">
+            <!-- Card Header -->
+            <div class="card-header py-3" style="background-color: #e5efee">
+              <h6 class="m-0 font-weight-bold" style="color: #00635b">
+                Survey Categorization
+              </h6>
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+              <div class="chart-pie pt-4 pb-2">
+                <canvas
+                  id="surveyCategorizeChart"
+                  baseChart
+                  [datasets]="surveyCategorizeChartData"
+                  [labels]="surveyCategorizeChartLabels"
+                  [chartType]="surveyCategorizeChartType"
+                  [options]="surveyCategorizeChartOptions"
+                  *ngIf="surveyCategorizeValues.length > 0; else noGraph"
+                ></canvas>
+              </div>
+              <!-- <div class="mt-4 text-center small">
+                <span class="mr-2">
+                  <i
+                    class="mdi mdi-checkbox-blank-circle"
+                    style="color: #5e7e31"
+                  ></i>
+                  Research
+                </span>
+                <span class="mr-2">
+                  <i
+                    class="mdi mdi-checkbox-blank-circle"
+                    style="color: #c388fb"
+                  ></i>
+                  Education
+                </span>
+                <span class="mr-2">
+                  <i
+                    class="mdi mdi-checkbox-blank-circle"
+                    style="color: #993d2e"
+                  ></i>
+                  Events
+                </span>
+                <span class="mr-2">
+                  <i
+                    class="mdi mdi-checkbox-blank-circle"
+                    style="color: #f0487d"
+                  ></i>
+                  HR
+                </span>
+                <span class="mr-2">
+                  <i
+                    class="mdi mdi-checkbox-blank-circle"
+                    style="color: #008ee3"
+                  ></i>
+                  Customer
+                </span>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Views & Responses Chart Month Wise -->
+      <div class="row">
+        <div class="col">
+          <div class="card shadow mb-4">
+            <!-- Card Header -->
+            <div class="card-header py-3" style="background-color: #e5efee">
+              <h6 class="m-0 font-weight-bold" style="color: #00635b">
+                Views & Responses
+              </h6>
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+              <div class="chart-area">
+                <canvas
+                  id="viewsResponseChart"
+                  baseChart
+                  [datasets]="viewsResponseChartData"
+                  [labels]="viewsResponseChartLabels"
+                  [options]="viewsResponseChartOptions"
+                  [legend]="viewsResponseChartLegend"
+                  [chartType]="viewsResponseChartType"
+                  [colors]="viewsResponseChartColors"
+                  *ngIf="viewsMonthValues.length > 0; else noGraph"
+                ></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <!-- Engagement Rate -->
+        <div class="col-xl-3 col-lg-3">
+          <div class="card shadow mb-4">
+            <!-- Card Header -->
+            <div
+              class="
+                card-header
+                py-3
+                d-flex
+                flex-row
+                align-items-center
+                justify-content-between
+              "
+              style="background-color: #e5efee"
+            >
+              <h6 class="m-0 font-weight-bold" style="color: #00635b">
+                Engagement Rate
+              </h6>
+            </div>
+            <!-- Card Body -->
+            <div style="padding: 8px">
+              <div id="canvasHolder" class="chart-pie pt-4 pb-2">
+                <label class="chart-title">{{ engagementRate }}%</label>
+                <canvas
+                  id="engageChart"
+                  baseChart
+                  [datasets]="engageChartData"
+                  [labels]="engageChartLabels"
+                  [chartType]="engageChartType"
+                  [options]="engageChartOptions"
+                ></canvas>
+              </div>
+              <!-- <div class="mt-4 text-center small">
+            <span class="mr-2">
+              <i
+                class="mdi mdi-checkbox-blank-circle"
+                style="color: #993d2e"
+              ></i>
+              Research
+            </span>
+            <span class="mr-2">
+              <i
+                class="mdi mdi-checkbox-blank-circle"
+                style="color: #c388fb"
+              ></i>
+              Education
+            </span>
+          </div> -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Survey Categorization Chart -->
+        <div class="col-xl-9 col-lg-9">
+          <div class="card shadow mb-4">
+            <!-- Card Header -->
+            <div
+              class="
+                card-header
+                py-3
+                d-flex
+                flex-row
+                align-items-center
+                justify-content-between
+              "
+              style="background-color: #e5efee"
+            >
+              <h6 class="m-0 font-weight-bold" style="color: #00635b">
+                Views VS Responses [Category Wise]
+              </h6>
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+              <div class="chart-pie pt-4 pb-2" style="min-height: 600px">
+                <canvas
+                  baseChart
+                  [datasets]="radarChartData"
+                  [options]="radarChartOptions"
+                  [labels]="radarChartLabels"
+                  [chartType]="radarChartType"
+                  *ngIf="viewsRadarValues.length > 0; else noGraph"
+                >
+                </canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #noGraph>
+    <div class="empty_block" style="text-align: center; margin-top: 2%">
+      <img
+        style="max-width: 250px; max-height: 250px"
+        src="./../../../assets/incomplete_graph.svg"
+        alt="no graph"
+      />
+      <h3 style="margin-top: 2%">
+        <i>No Data for this graph.</i>
+      </h3>
+    </div>
+  </ng-template>
+</div>

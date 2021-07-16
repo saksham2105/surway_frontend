@@ -1,0 +1,170 @@
+<!-- Loading Spinner -->
+<div class="loading_spinner" *ngIf="isLoading">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+
+<div class="container subscription-screen" *ngIf="!isLoading">
+  <!-- Titles and Sub titles -->
+  <h5 class="text-center pricing-subtitle">SURWAY PLANS</h5>
+  <h1 class="text-center pricing-title">Pricings</h1>
+
+  <!-- Basic tier -->
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card pricing-card pricing-plan-free">
+        <div class="card-body">
+          <i class="mdi mdi-feather pricing-plan-icon"></i>
+          <p class="pricing-plan-title">Basic Tier</p>
+          <h3 class="pricing-plan-cost ml-auto">FREE</h3>
+          <ul class="pricing-plan-features" style="font-size: 15px">
+            <li style="font-weight: 'bolder'">0 HU Coin</li>
+            <hr />
+            <li>
+              Limited 3 Surveys Creation Free of Cost
+              <i class="mdi mdi-fish" style="color: green; font-size: 22px"></i>
+            </li>
+            <li>
+              Restrict to make only 1 Group Free of Cost
+              <i class="mdi mdi-fish" style="color: green; font-size: 22px"></i>
+            </li>
+            <li>
+              No access to Survey wise Statistics
+              <i
+                class="mdi mdi-fish-off"
+                style="color: red; font-size: 22px"
+              ></i>
+            </li>
+            <li>
+              Can't assign surveys to user
+              <i
+                class="mdi mdi-fish-off"
+                style="color: red; font-size: 22px"
+              ></i>
+            </li>
+            <li>
+              Can't Export Reports
+              <i
+                class="mdi mdi-fish-off"
+                style="color: red; font-size: 22px"
+              ></i>
+            </li>
+          </ul>
+          <a (click)="backToHome()" class="btn pricing-plan-purchase-btn"
+            >Free</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- Standard tier -->
+    <div class="col-md-4">
+      <div
+        class="card pricing-card pricing-card-highlighted pricing-plan-monthly"
+      >
+        <div class="card-body">
+          <i class="mdi mdi-summit pricing-plan-icon"></i>
+          <p class="pricing-plan-title">Standard Tier</p>
+          <h3 class="pricing-plan-cost ml-auto">Rs. 99</h3>
+          <ul class="pricing-plan-features" style="font-size: 15px">
+            <li style="font-weight: 'bolder'">100 HU Coins</li>
+            <hr />
+            <li>
+              Limited 7 Surveys Creation Free of Cost<i
+                class="mdi mdi-fish"
+                style="color: green; font-size: 22px"
+              ></i>
+            </li>
+            <li>
+              Restrict to make 5 Groups Free of Cost<i
+                class="mdi mdi-fish"
+                style="color: green; font-size: 22px"
+              ></i>
+            </li>
+            <li>
+              Survey wise Statistics<i
+                class="mdi mdi-fish"
+                style="color: green; font-size: 22px"
+              ></i>
+            </li>
+            <li>
+              Assign surveys to user<i
+                class="mdi mdi-fish"
+                style="color: green; font-size: 22px"
+              ></i>
+            </li>
+            <li>
+              Export Reports<i
+                class="mdi mdi-fish"
+                style="color: green; font-size: 22px"
+              ></i>
+            </li>
+          </ul>
+          <a
+            (click)="onSubmit('standard')"
+            class="btn pricing-plan-purchase-btn"
+            >Purchase</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- Mega tier -->
+    <div class="col-md-4">
+      <div class="card pricing-card pricing-plan-yearly">
+        <div class="card-body">
+          <i class="mdi mdi-mastodon pricing-plan-icon"></i>
+          <p class="pricing-plan-title">Mega Tier</p>
+          <h3 class="pricing-plan-cost ml-auto">
+            Rs. 599 <strike style="font-size: 24px; color: red">Rs.999</strike>
+          </h3>
+          <ul class="pricing-plan-features" style="font-size: 15px">
+            <li style="font-weight: 'bolder'">1000 HU Coins</li>
+            <hr />
+            <li>
+              Limited 20 Surveys Creation Free of Cost<i
+                class="mdi mdi-fish"
+                style="color: green; font-size: 22px"
+              ></i>
+            </li>
+            <li>
+              Restrict to make 10 Groups Free of Cost<i
+                class="mdi mdi-fish"
+                style="color: green; font-size: 22px"
+              ></i>
+            </li>
+            <li>
+              Survey wise Statistics<i
+                class="mdi mdi-fish"
+                style="color: green; font-size: 22px"
+              ></i>
+            </li>
+            <li>
+              Assign surveys to user<i
+                class="mdi mdi-fish"
+                style="color: green; font-size: 22px"
+              ></i>
+            </li>
+            <li>
+              Export Reports<i
+                class="mdi mdi-fish"
+                style="color: green; font-size: 22px"
+              ></i>
+            </li>
+          </ul>
+          <a (click)="onSubmit('mega')" class="btn pricing-plan-purchase-btn"
+            >Purchase</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Footer -->
+  <footer class="sticky-footer bg-white">
+    <div class="container my-auto">
+      <div class="copyright text-center my-auto">
+        <span>Copyright &copy; Surway 2021</span>
+      </div>
+    </div>
+  </footer>
+  <!-- End of Footer -->
+</div>

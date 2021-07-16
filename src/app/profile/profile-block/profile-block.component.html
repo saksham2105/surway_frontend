@@ -1,0 +1,286 @@
+<!-- Loading Spinner -->
+<div class="loading_spinner" *ngIf="isLoading">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+
+<!-- Main Profile page-->
+<div class="profile-page" *ngIf="!isLoading">
+  <div class="shadow container profile">
+    <div class="row">
+      <!-- Profile Image section-->
+      <div class="col-md-4">
+        <div class="profile-img">
+          <img
+            *ngFor="let item of base64textImageString"
+            src="{{ item }}"
+            alt=""
+            id="profile-image"
+            width="50"
+            height="50"
+          />
+          <div
+            class="file btn btn-lg btn-primary"
+            *ngIf="profileNav === 'EditProfile'"
+          >
+            Change Photo
+            <input
+              type="file"
+              name="file"
+              (change)="onUploadChange($event)"
+              accept=".png, .jpg, .jpeg"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Profile Top card section which shows name and email and save button in edit Profile mode -->
+      <div class="col-md-6">
+        <div class="profile-head shadow p-3 mb-5 bg-white">
+          <h4>{{ firstName }} {{ lastName }}</h4>
+          <h5>{{ email }}</h5>
+        </div>
+      </div>
+    </div>
+
+    <!-- Profile Main content [Contains => MyAccount Screen, Edit Profile Form, Update Password Form]-->
+    <div class="row">
+      <div class="col-xs-4 col-xs-offset-4">
+        <div
+          class="col-md-12"
+          style="
+            text-align: start;
+            display: flex;
+            justify-content: space-between;
+          "
+        >
+          <label
+            style="
+              font-size: 20px;
+              color: black;
+              margin-top: 1rem;
+              margin-left: 2rem;
+              margin-bottom: -10px;
+            "
+            >{{ profileTitle }}</label
+          >
+          <!-- Save Button -->
+          <button
+            *ngIf="profileNav != 'MyAccount'"
+            class="profile-edit-btn-colored-btn"
+            type="button"
+            (click)="onUpdateProfile()"
+          >
+            Save
+          </button>
+          <p style="display: none; color: red" id="profileError">
+            Please enter proper profile details
+          </p>
+        </div>
+
+        <div
+          class="tab-content profile-info shadow-lg p-3 mb-5 bg-white"
+          id="myTabContent"
+        >
+          <!-- Form starts for Edit Profile mode -->
+          <form
+            [formGroup]="editProfileForm"
+            *ngIf="profileNav === 'EditProfile'"
+          >
+            <div class="row profile-info-row">
+              <div class="col-md-6">
+                <label>First Name</label>
+              </div>
+              <div class="col-md-6">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="firstName"
+                  placeholder="First Name"
+                  formControlName="firstInputName"
+                />
+              </div>
+            </div>
+
+            <div class="row profile-info-row">
+              <div class="col-md-6">
+                <label>Last Name</label>
+              </div>
+              <div class="col-md-6">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="lastName"
+                  placeholder="Last Name"
+                  formControlName="lastInputName"
+                />
+              </div>
+            </div>
+          </form>
+          <!-- Form Edit Profile Ends-->
+
+          <!-- Form starts for update password mode-->
+          <form
+            [formGroup]="updatePasswordProfileForm"
+            *ngIf="profileNav === 'UpdatePassword'"
+          >
+            <!-- Form Password Element -->
+            <div class="row profile-info-row">
+              <div class="col-md-6">
+                <label>New Password</label>
+              </div>
+              <div class="col-md-6">
+                <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  class="form-control"
+                  placeholder="⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆"
+                  formControlName="password"
+                />
+                <!-- Visual Validations for password input -->
+                <div
+                  *ngIf="
+                    (updatePasswordProfileForm.get('password').invalid &&
+                      updatePasswordProfileForm.get('password').touched) ||
+                    updatePasswordProfileForm.get('password').dirty
+                  "
+                >
+                  <small
+                    *ngIf="
+                      updatePasswordProfileForm.get('password').errors?.required
+                    "
+                    class="text-danger"
+                    >Password is required
+                  </small>
+
+                  <small
+                    *ngIf="
+                      updatePasswordProfileForm.get('password').errors?.pattern
+                    "
+                    class="text-danger"
+                    >Please provide a password greater than 6 words
+                  </small>
+                </div>
+              </div>
+            </div>
+
+            <div class="row profile-info-row">
+              <div class="col-md-6">
+                <label>Confirm Password</label>
+              </div>
+              <div class="col-md-6">
+                <input
+                  type="password"
+                  name="confirm-password"
+                  id="confirm-password"
+                  class="form-control"
+                  placeholder="⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆"
+                  formControlName="confirmPassword"
+                />
+                <!-- Visual Validations for password input -->
+                <div
+                  *ngIf="
+                    (updatePasswordProfileForm.get('confirmPassword').invalid &&
+                      updatePasswordProfileForm.get('confirmPassword')
+                        .touched) ||
+                    updatePasswordProfileForm.get('confirmPassword').dirty
+                  "
+                >
+                  <small
+                    *ngIf="
+                      updatePasswordProfileForm.get('confirmPassword').errors
+                        ?.required
+                    "
+                    class="text-danger"
+                    >Password is required
+                  </small>
+
+                  <small
+                    *ngIf="
+                      updatePasswordProfileForm.get('confirmPassword').errors
+                        ?.pattern
+                    "
+                    class="text-danger"
+                    >Please provide a password greater than 6 words
+                  </small>
+                </div>
+              </div>
+            </div>
+          </form>
+          <!-- Update Password Form ENDS -->
+
+          <div
+            class="demographic-information"
+            *ngIf="profileNav === 'MyAccount'"
+          >
+            <div class="row profile-info-row">
+              <div class="col-md-6">
+                <label>First Name</label>
+              </div>
+              <div class="col-md-6">
+                <p>{{ firstName }}</p>
+              </div>
+            </div>
+
+            <div class="row profile-info-row">
+              <div class="col-md-6">
+                <label>Last Name</label>
+              </div>
+              <div class="col-md-6">
+                <p>{{ lastName }}</p>
+              </div>
+            </div>
+
+            <div class="row profile-info-row">
+              <div class="col-md-6">
+                <label>Email</label>
+              </div>
+              <div class="col-md-6">
+                <p>{{ email }}</p>
+              </div>
+            </div>
+
+            <div class="row profile-info-row">
+              <div class="col-md-6">
+                <label>HU Coins</label>
+              </div>
+              <div class="col-md-6">
+                <p>{{ huCoins }}</p>
+              </div>
+            </div>
+
+            <div class="row profile-info-row">
+              <div class="col-md-6">
+                <label>Your Plan</label>
+              </div>
+              <div class="col-md-4">
+                <p>{{ isUserSubscribed }}</p>
+              </div>
+              <div class="col-md-2">
+                <p>
+                  <button
+                    href=""
+                    class="profile-edit-btn-colored-btn"
+                    (click)="onSubscribe()"
+                    *ngIf="isUserSubscribed === 'SurWay Freebie'"
+                  >
+                    Go Pro
+                  </button>
+                </p>
+              </div>
+            </div>
+
+            <div class="row profile-info-row">
+              <div class="col-md-6">
+                <label>Account Created on</label>
+              </div>
+              <div class="col-md-6">
+                <p>{{ accountCreatedOn | date: "MMMM dd, YYYY" }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

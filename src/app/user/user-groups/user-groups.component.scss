@@ -1,0 +1,29 @@
+.card-info-row {
+  padding: 0 4px;
+}
+.question-total {
+  background-color: #00635b;
+  width: auto;
+  color: white;
+  padding: 4px 8px;
+  margin: -10px 0 8px 9px;
+  border-radius: 0.5rem;
+}
+.card-info {
+  border: 1px solid lightgrey;
+  border-radius: 0.6rem;
+  border-left: 4px solid #00635b;
+  border-right: 4px solid #00635b;
+  cursor: pointer;
+  &-row {
+    font-size: 16px;
+  }
+}
+
+//loading spinner center styling
+.loading_spinner {
+  height: 100%;
+  width: 100%;
+  padding-top: 10vh;
+  text-align: center;
+}

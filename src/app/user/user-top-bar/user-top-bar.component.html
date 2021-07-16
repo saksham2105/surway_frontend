@@ -1,0 +1,85 @@
+<!-- Loading Spinner -->
+<div class="loading_spinner" *ngIf="isLoading">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+
+<div class="top_bar" *ngIf="!isLoading">
+  <!-- Topbar -->
+  <nav
+    class="
+      navbar navbar-expand navbar-light
+      bg-white
+      topbar
+      mb-4
+      static-top
+      shadow
+    "
+  >
+    <!-- Sidebar Toggle during mobile view (Topbar) -->
+    <button
+      id="sidebarToggleTop"
+      (click)="onClick()"
+      class="btn btn-link d-md-none rounded-circle mr-3"
+    >
+      <i class="mdi mdi-hamburger"></i>
+    </button>
+
+    <!-- Topbar Navbar -->
+    <ul class="navbar-nav ml-auto">
+      <!-- <div class="topbar-divider d-none d-sm-block"></div> -->
+
+      <!-- Nav Item - User Information -->
+      <li class="nav-item dropdown no-arrow">
+        <a
+          class="nav-link dropdown-toggle"
+          id="userDropdown"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+          (click)="onProfileClick()"
+        >
+          <span class="mr-2 d-none d-sm-block text-gray-600 small">{{
+            profileEmail
+          }}</span>
+          <img
+            *ngIf="imageString === ''"
+            class="img-profile rounded-circle"
+            src="../assets/undraw_profile.svg"
+          />
+          <img
+            *ngIf="imageString != ''"
+            src="{{ imageString }}"
+            class="img-profile rounded-circle"
+            src="../assets/undraw_profile.svg"
+          />
+        </a>
+        <!-- Dropdown - User Information -->
+        <div
+          class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+          aria-labelledby="userDropdown"
+        >
+          <a class="dropdown-item" href="#">
+            <fa-icon [icon]="faUser"></fa-icon>
+            Profile
+          </a>
+          <a class="dropdown-item" href="#">
+            <fa-icon [icon]="faCogs"></fa-icon>
+            Settings
+          </a>
+          <div class="dropdown-divider"></div>
+          <a
+            class="dropdown-item"
+            href="#"
+            data-toggle="modal"
+            data-target="#logoutModal"
+          >
+            <fa-icon [icon]="faSignOutAlt"></fa-icon>
+            Logout
+          </a>
+        </div>
+      </li>
+    </ul>
+  </nav>
+  <!-- End of Topbar -->
+</div>

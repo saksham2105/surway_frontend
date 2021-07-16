@@ -1,0 +1,43 @@
+<ng-container *ngIf="display$ | async as display">
+  <section [class.open]="display === 'open'" (click)="close()">
+    <div (click)="$event.stopPropagation()" class="col-6 h-250">
+      <button class="close rounded-circle" type="button" (click)="close()">
+        <i class="mdi mdi-close text-danger"></i>
+      </button>
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" style="color: black">
+          {{ modalHeader }}
+        </h5>
+      </div>
+      <div class="container">
+        <div class="row" style="text-align: center">
+          <div class="col">
+            <img
+              [src]="imagePath"
+              style="max-width: 300px; max-height: 300px"
+            />
+            <p class="h3 text-muted">{{ message }}</p>
+          </div>
+        </div>
+        <div *ngIf="paymentFailed">
+          <div class="row" style="text-align: center">
+            <p class="h3">Want more HU coins?</p>
+          </div>
+          <div class="d-flex justify-content-between">
+            <button class="btn" (click)="redirectToSubscription()">
+              Buy Plans
+            </button>
+            <button class="btn" (click)="redirectToPublicSurvey()">
+              Answer Surveys
+            </button>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" (click)="close()">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+</ng-container>

@@ -1,0 +1,209 @@
+<div class="container-fluid">
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h3 style="color: #00635b">Templates</h3>
+    <a
+      href="/builder"
+      style="font-size: 16px; background-color: #00635b; color: white"
+      class="d-sm-inline-block btn btn-sm shadow-sm"
+    >
+      <i class="mdi mdi-chart-tree text-white" style="margin-right: 10px"></i>
+      Create Custom Survey
+    </a>
+  </div>
+  <!-- Loading Progress -->
+  <div class="loading_spinner" *ngIf="isContentLoading; else MyContent">
+    <app-loading-spinner></app-loading-spinner>
+    <p>Loading.....</p>
+  </div>
+
+  <!-- Content -->
+  <ng-template #MyContent>
+    <div class="content" style="margin-left: 2rem; margin-right: 2rem">
+      <!-- Free templates accordion -->
+      <div class="row card-info p-2 mb-3">
+        <div class="accordion" id="userTemplates">
+          <div class="accordion-item shadow">
+            <h2 class="accordion-header" id="templates">
+              <!-- Accordion button -->
+              <button
+                class="accordion-button"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#content-templates"
+                aria-expanded="true"
+                aria-controls="content-templates"
+              >
+                Free Templates
+              </button>
+            </h2>
+            <div
+              id="content-templates"
+              class="accordion-collapse collapse show row"
+              aria-labelledby="templates"
+            >
+              <div class="accordion-body container-fluid">
+                <div class="row card-row">
+                  <div
+                    class="col-md-4 col-lg-3 col-12"
+                    style="text-align: center"
+                    *ngFor="let freeTemplate of freeTemplates"
+                  >
+                    <!-- Cards Section -->
+                    <div
+                      style="margin-top: 10px; margin-bottom: 10px"
+                      class="card border-left--{{ colors[0] }} btn"
+                      (click)="openTemplate(freeTemplate)"
+                    >
+                      <div
+                        class="
+                          d-flex
+                          justify-content-between
+                          align-items-center
+                          p-2
+                        "
+                      >
+                        <img
+                          [src]="getTemplateImage(freeTemplate.surveyCategory)"
+                          class="survey-image"
+                        />
+                        <div
+                          class="
+                            d-flex
+                            flex-column
+                            justify-content-center
+                            align-items-start
+                          "
+                        >
+                          <p>
+                            Category:
+                            <strong>{{ freeTemplate.surveyCategory }}</strong>
+                          </p>
+                          <p>
+                            Question Count:
+                            <strong>{{ freeTemplate.questions.length }}</strong>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category accordion -->
+      <div
+        class="row card-info p-2 mb-3"
+        *ngFor="let category of categories; let i = index"
+      >
+        <div class="accordion" [attr.id]="'itemDropDown' + i">
+          <div class="accordion-item shadow">
+            <h2 class="accordion-header" [attr.id]="'item-heading' + i">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                [attr.data-bs-target]="'#item-collapse' + i"
+                aria-expanded="false"
+                [attr.aria-controls]="'item-collapse' + i"
+              >
+                {{ firstCharCap(category) }}
+              </button>
+            </h2>
+            <div
+              [attr.id]="'item-collapse' + i"
+              class="accordion-collapse collapse row"
+              style="text-align: center"
+              [attr.aria-labelledby]="'item-heading' + i"
+              [attr.data-bs-parent]="'#itemDropDown' + i"
+            >
+              <div class="accordion-body container-fluid">
+                <div class="row card-row">
+                  <div
+                    class="col-md-4 col-lg-3 col-12"
+                    style="text-align: center"
+                    *ngFor="
+                      let categoryTemplate of paidTemplatesGrouped.get(category)
+                    "
+                  >
+                    <!-- Cards Section -->
+                    <div
+                      style="margin-top: 10px; margin-bottom: 10px"
+                      class="card border-left--{{ categoryTemplate.color }} btn"
+                      (click)="openTemplate(categoryTemplate)"
+                    >
+                      <div
+                        class="
+                          d-flex
+                          justify-content-between
+                          align-items-center
+                          p-2
+                        "
+                      >
+                        <img
+                          [src]="getTemplateImage(category)"
+                          class="survey-image"
+                        />
+                        <div
+                          class="
+                            d-flex
+                            flex-column
+                            justify-content-center
+                            align-items-start
+                          "
+                        >
+                          <p>
+                            Category:
+                            <strong>{{ firstCharCap(category) }}</strong>
+                          </p>
+                          <p>
+                            Questions Count:
+                            <strong>{{
+                              categoryTemplate.questions.length
+                            }}</strong>
+                          </p>
+                        </div>
+                        <div
+                          class="tooltip-wrap"
+                          *ngIf="
+                            !categoryTemplate.status;
+                            else unlockedTemplateIcon
+                          "
+                        >
+                          <i
+                            class="mdi mdi-lock"
+                            style="color: #00635b; font-size: 30px"
+                          >
+                            <span
+                              class="tooltip-content"
+                              style="font-size: 16px"
+                              >Template is Locked</span
+                            >
+                          </i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #unlockedTemplateIcon>
+    <i
+      class="mdi mdi-lock-open-variant"
+      style="color: #ff7f50; font-size: 30px"
+    ></i>
+  </ng-template>
+</div>
+<app-base-modal></app-base-modal>
+<app-payment-confirmation-modal></app-payment-confirmation-modal>
+<div *ngIf="isAppAlertModalOpen">
+  <app-alert-modal></app-alert-modal>
+</div>

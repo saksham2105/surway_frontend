@@ -1,0 +1,17 @@
+$primary-color: #00635b;
+$secondary-color: #a9dfda;
+p {
+  color: black;
+}
+button {
+  border: 1px solid $primary-color;
+  color: $primary-color;
+  &:hover {
+    background-color: $primary-color;
+    color: white;
+  }
+}
+.selected {
+  background-color: $primary-color;
+  color: white;
+}

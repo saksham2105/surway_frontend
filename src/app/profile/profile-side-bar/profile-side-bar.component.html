@@ -1,0 +1,160 @@
+<!-- <div id="wrapper" *ngIf="this.mainService.isSideBarHidden" class="d-md-block"> -->
+<div id="sidebar-wrapper" class="">
+  <!-- Sidebar -->
+  <ul
+    class="navbar-nav sidebar sidebar-dark accordion"
+    [ngClass]="{ toggled: this.mainService.isSideBarToggled }"
+    style="
+      height: 20em;
+      background-color: #00635b;
+      overflow: scroll;
+      overflow-x: hidden;
+    "
+    id="accordionSidebar"
+  >
+    <!-- Sidebar - Brand -->
+    <a
+      class="sidebar-brand d-flex align-items-center justify-content-center row"
+      routerLink="/user/home"
+      [replaceUrl]="true"
+      routerLinkActive="active"
+    >
+      <div class="sidebar-brand-icon col">
+        <img
+          src="../assets/logo_white.svg"
+          alt=""
+          style="min-width: 36px; min-height: 36px"
+        />
+      </div>
+      <div
+        *ngIf="!this.mainService.isSideBarToggled"
+        class="sidebar-brand-text col"
+        style="text-align: left"
+      >
+        Surway
+      </div>
+    </a>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0" />
+
+    <!-- Nav Item - My Account -->
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        routerLink="/profile"
+        routerLinkActive="active"
+        active
+        (click)="profileNav('MyAccount')"
+      >
+        <i class="mdi mdi-face" style="font-size: 22px; margin-right: 10px"></i>
+        <span style="font-size: 18px" *ngIf="!this.mainService.isSideBarToggled"
+          >My Account</span
+        ></a
+      >
+    </li>
+
+    <!-- Nav Item - Edit Profile button -->
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        routerLink="/profile"
+        routerLinkActive="active"
+        (click)="profileNav('EditProfile')"
+      >
+        <i
+          class="mdi mdi-account-edit"
+          style="font-size: 22px; margin-right: 10px"
+        ></i>
+        <span
+          style="font-size: 16px"
+          *ngIf="!this.mainService.isSideBarToggled"
+        >
+          Edit Profile</span
+        >
+      </a>
+    </li>
+
+    <!-- Nav Item - Update Password button -->
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        style="cursor: pointer"
+        routerLink="/profile"
+        (click)="profileNav('UpdatePassword')"
+        routerLinkActive="active"
+      >
+        <i
+          class="mdi mdi-form-textbox-password"
+          style="font-size: 22px; margin-right: 10px"
+        ></i>
+        <span
+          style="font-size: 16px"
+          *ngIf="!this.mainService.isSideBarToggled"
+        >
+          Update Password</span
+        >
+      </a>
+    </li>
+
+    <!-- Nav Item - Log out button -->
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        style="cursor: pointer"
+        (click)="onLogout()"
+        routerLinkActive="active"
+      >
+        <i
+          class="mdi mdi-logout"
+          style="font-size: 22px; margin-right: 10px"
+        ></i>
+        <span
+          style="font-size: 16px"
+          *ngIf="!this.mainService.isSideBarToggled"
+        >
+          Log out</span
+        >
+      </a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block" />
+
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+      <button
+        class="rounded-circle border-0"
+        id="sidebarToggle"
+        (click)="this.mainService.toggleSideBar()"
+      >
+        <i
+          class="mdi mdi-chevron-left"
+          *ngIf="!this.mainService.isSideBarToggled"
+          style="font-size: 22px; margin-right: 10px"
+        ></i>
+        <i
+          class="mdi mdi-chevron-right"
+          *ngIf="this.mainService.isSideBarToggled"
+          style="font-size: 22px; margin-right: 10px"
+        ></i>
+      </button>
+    </div>
+
+    <!-- Sidebar Message -->
+    <div class="sidebar-card d-none d-lg-flex" *ngIf="!isUserSubscribed">
+      <i class="mdi mdi-finance material-icon"></i>
+      <p class="text-center mb-2">
+        Through <strong>HU Coins</strong>, you can unlock premium features,
+        components, and more!
+      </p>
+      <a
+        class="btn btn-sm"
+        style="background-color: #c7781c; color: white"
+        (click)="onSubscribe()"
+        >Buy HU Coins!</a
+      >
+    </div>
+  </ul>
+  <!-- End of Sidebar -->
+</div>
