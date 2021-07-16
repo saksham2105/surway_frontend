@@ -27,4 +27,4 @@ This tool Provides vast features to create an online survey which are as follows
 * A User can track his/her history like where he/she has spent HU Coins at what time for which Activity
 
 ## Demo Video
-
+[Demo](https://youtu.be/BA7WiKWd5b8)
