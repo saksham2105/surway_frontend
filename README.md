@@ -27,7 +27,7 @@ This tool Provides vast features to create an online survey which are as follows
 * A User can track his/her history like where he/she has spent HU Coins at what time for which Activity
 
 ## Tools and Technologies Used 
-![](https://img.shields.io/badge/Angular JS-%3C%2F%3E-blueviolet) ![](https://img.shields.io/badge/TypeScript-%3C%2F%3E-yellow) ![](https://img.shields.io/badge/SCSS-%3C%2F%3E-yellow) 
+![](https://img.shields.io/badge/Angular-%3C%2F%3E-blueviolet) ![](https://img.shields.io/badge/TypeScript-%3C%2F%3E-yellow) ![](https://img.shields.io/badge/SCSS-%3C%2F%3E-yellow) 
 
 Link For it's Backend Part 
 [Surway_Backend](https://github.com/saksham2105/surway_backend)
