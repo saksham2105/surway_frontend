@@ -6,6 +6,9 @@
 
 This Repository contains code for Front end part of Project Surway 
 
+### Video Preview
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/BA7WiKWd5b8/0.jpg)](https://www.youtube.com/watch?v=BA7WiKWd5b8)
+
 ## How To Use
 
 Run `ng serve` to start angular dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
