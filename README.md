@@ -1,3 +1,7 @@
+![GitHub stars](https://img.shields.io/github/stars/saksham2105/surway_frontend) 
+[![Maintenance](https://img.shields.io/badge/maintained-yes-green.svg)](https://github.com/saksham2105/surway_frontend/commits/master)
+[![Website shields.io](https://img.shields.io/badge/website-up-yellow)]()
+
 # Surway Frontend(A Survey Tool)
 
 This Repository contains code for Front end part of Project Surway 
